@@ -27,7 +27,7 @@
 
       <div id="login">
 
-        <form method="post" name="login" action="logins">
+        <form method="post" name="login" action="../admin">
             @csrf
           <fieldset class="clearfix">
 
