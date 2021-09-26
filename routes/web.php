@@ -32,7 +32,7 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/login', function () {
         return view('view_admin.login');
     });
-    Route::post('/logins', function () {
+    Route::post('/', function () {
         $_SESSION["user"] = "aka";
         return view('view_admin.dashboard');
     });
