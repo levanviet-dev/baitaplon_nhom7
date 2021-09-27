@@ -13,3 +13,4 @@ Link to home: localhost: /your name project <br>
 Link to admin localhost: /your name project/admin<br>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBu0t_gI5qPO7jFdfleCQhtC57GYi6Sv9EGg&usqp=CAU">
 <p>Good Luck!</p>
+<p>by nguyễn văn phi</p>
