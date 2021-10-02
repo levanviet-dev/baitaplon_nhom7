@@ -8,6 +8,6 @@
 </p>
 
 ## About Laravel
-update 1 : ADD template
-Update 2 Login, new booking room, room , booking
+<p>update 1 : ADD template
+Update 2 Login, new booking room, room , booking</p>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBu0t_gI5qPO7jFdfleCQhtC57GYi6Sv9EGg&usqp=CAU">
