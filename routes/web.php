@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +19,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/booking', function () {
-    return view('booking');
-});
+Route::get('/booking','BookingController@index');
 
-Route::get('/close', function () {
-    return view('welcome');
-});
+Route::post('/create','BookingController@create');
 // admin router
 Route::group(['prefix'=>'/admin'], function () {
-    Route::get('/', function () {
-        return view('view_admin.dashboard');
-    });
-    Route::get('/login', function () {
-        return view('view_admin.login');
-    });
-    Route::post('/', function () {
-        $_SESSION["user"] = "aka";
-        return view('view_admin.dashboard');
-    });
+    Route::get('/', 'Admin\AdminController@dashboard');
+    Route::get('/login','Auth\LoginController@login');
+    Route::get('/logout','Auth\LoginController@logout');
+    Route::post('/userlogin', 'Auth\LoginController@userLogin');
+    // Route::get('/dashboard','Admin\AdminController@dashboard');
     
+    Route::get('/test','Admin\AdminController@test');
 });
+Route::get('/getroom','PhongController@getroom');
