@@ -40,7 +40,8 @@ class LoginController extends Controller
 
     }
     public function logout(){
-        session_unset();
+       session_start();
+       session_destroy();
         return view('view_admin.login');
     }
 
