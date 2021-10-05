@@ -7,8 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About project
 <p>update 1 : ADD template</p>
-<p>Update 2 Login, new booking room, customer booking</p>
+<p>Update 2 Login, new booking room, customer booking,modal bootstrap</p>
 <p>update 3 ..... </p>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBu0t_gI5qPO7jFdfleCQhtC57GYi6Sv9EGg&usqp=CAU">
