@@ -28,8 +28,11 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/login','Auth\LoginController@login');
     Route::get('/logout','Auth\LoginController@logout');
     Route::post('/userlogin', 'Auth\LoginController@userLogin');
-    // Route::get('/dashboard','Admin\AdminController@dashboard');
+     Route::get('/roombooking','Admin\AdminController@roombooking');
     
     Route::get('/test','Admin\AdminController@test');
 });
+// route get data
 Route::get('/getroom','PhongController@getroom');
+Route::get('/bookedroom','PhongController@bookedroom');
+Route::get('/booked','Admin\AdminController@booked');

@@ -63,13 +63,13 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a class="active-menu" href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-qrcode"></i> Payment</a>
