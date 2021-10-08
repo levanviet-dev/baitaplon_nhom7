@@ -102,7 +102,7 @@
                         <div class="panel-body">
 								<div class="form-group">
                                             <label>Type Of Room *</label>
-                                            <select name="troom"  class="form-control" required>
+                                            <select name="troom"  class="form-control troom" required>
 												<option value selected ></option>
                                                 <?php
                                                 foreach ($roomtype as $r) {
@@ -120,9 +120,9 @@
                               </div>
 							  <div class="form-group">
                                             <label>Bedding Type</label>
-                                            <select name="bed" class="form-control" required>
-												<option value selected ></option>
-                                                <option value="1">Double</option>
+                                            <select name="bed" class="form-control" id="bed" required>
+												<option value selected  ></option>
+                                                {{-- <option value="1">Double</option> --}}
                                                 
                                                 {{-- <option value="Single">Single</option>
                                                 <option value="Double">Double</option>
@@ -134,10 +134,13 @@
                                             </select>
                               </div>
 							  <div class="form-group">
-                                            <label>No.of Rooms *</label>
-                                            <select name="nroom" class="form-control" required>
+                                            <label>Số người</label>
+                                            <select name="nperson" class="form-control" required>
 												<option value selected ></option>
                                                 <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
                                               <!--  <option value="2">2</option>
 												<option value="3">3</option>
 												<option value="4">4</option>
@@ -150,7 +153,7 @@
 							 
 							  <div class="form-group">
                                             <label>Service</label>
-                                            <select name="service" class="form-control"required>
+                                            <select  name="service" class="form-control"required>
 												<option value selected ></option>
                                                <?php
                                                foreach ($service as $s) {
@@ -221,4 +224,41 @@
     
    
 </body>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
+<script>
+$( document ).ready(function(){
+ console.log("Ready!");
+
+
+$(".troom").change(function(){
+    var ID = $(this).val();
+
+  $.ajax({
+    url: 'http://localhost:8080/baitaplon_nhom7/getbed/'+ID,
+   datatype: 'JSON',
+  success: function(data){
+  console.log(data);
+   var numbed = JSON.parse(data);
+
+  var str = "";
+   for(var i = 0 ; i < numbed.length ; i++){
+   str += "<option value= "+numbed[i]['SoGiuong']+">"+numbed[i]['SoGiuong']+"</option> <br>"
+   }
+   console.log(str);
+  $('#bed').html(str);
+
+
+  }
+
+  });
+
+
+
+});
+
+});
+
+
+</script>
 </html>

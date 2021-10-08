@@ -27,6 +27,7 @@
                                  <input type="text">
                                  <button type="submit">Search</button>
                                </div>
+                               <h3>Danh sách đặt phòng</h3>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -64,7 +65,7 @@
                                     
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {!! $data->links() !!}
+                                    {{-- {!! $data->links() !!} --}}
                                 </div>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                     <input type="text"
                       name="" id="" aria-describedby="helpId" placeholder="">
                     </div>
-                    <h3>Danh sách đặt phòng</h3>
+                    <h3>Danh sách đã đặt phòng</h3>
 
                     <table class="table">
                         <thead>
@@ -143,7 +144,7 @@
            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
+            <button id="update" type="button" class="btn btn-default" data-dismiss="modal">Update</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -153,11 +154,17 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 <script>
 $( document ).ready(function(){
-    
+    // get element selected
 $(".selected").attr("data-toggle","modal");
 $('.selected').attr("data-target","#myModal");
 loadbookedroom();
+
+// click selected
+var id,idroom,numroom;
+//
 $('.selected').click(function(){
+    id = $(this).data('id');
+  $(this).closest('tr').attr('id',id);
 var phone = $(this).closest('tr').find('td:nth-child(10)').text();
 var name =$(this).closest('tr').find('td:first').text();
 var adress = $(this).closest('tr').find('td:nth-child(4)').text();
@@ -172,10 +179,55 @@ var str = "<table><tr><td> <label>Số điện thoại khách hàng: </label> </
   str += "<tr> <td> <label>Tên khách hàng: </label> </td><td> "+name+" </td></tr>";
   str += "<tr> <td> <label>Địa chỉ: </label> </td><td> "+adress+"  </td></tr>";
   str += "<tr> <td> <label>Loại phòng: </label> </td><td> "+typeroom+"  </td></tr>";
-  str += "<tr> <td> <label>Số phòng: </label> </td><td> <input> </td></tr>";
+  str += "<tr> <td> <label>Số phòng: </label> </td><td> "
+  +" <select id="+"numroom"+">  </select> </td></tr>";
   str += "<tr> <td> <label>Thẻ: </label> </td><td> "+card+"  </td></tr>";
   str += "<tr> <td> <label>Số tiền: </label> </td><td> "+money+"  </td></tr>";
   $('.modal-body').html(str);
+  
+  $.ajax({
+    url: 'http://localhost:8080/baitaplon_nhom7/roombytype/'+typeroom,
+   datatype: 'JSON',
+  success: function(data){
+    console.log(data);
+
+     var r = JSON.parse(data);
+
+  var room = "";  
+    for(var  i = 0 ; i < r.length ; i++){
+    room += "<option value="+r[i]['ID']+">"+r[i]['SoPhong']+"</option>";
+    }
+
+    $('#numroom').html(room);
+
+     }
+  });
+
+// update  element
+
+$('#update').click(function(){
+  console.log(id);
+  var idroom = $('#numroom').val();
+  $.ajax({
+    url: 'http://localhost:8080/baitaplon_nhom7/updatebook/'+id+'/'+idroom,
+   datatype: 'JSON',
+  success: function(data){
+      loadbookedroom();
+
+      if(data == 1){
+      $("#"+id).remove();
+      alert('Cập nhật thành công');
+      }
+      else {
+        alert('Vui lòng nhập đầy đủ');
+      }
+  }
+
+
+  });
+
+
+})
 
 
 });

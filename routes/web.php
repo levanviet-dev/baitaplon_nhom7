@@ -36,3 +36,6 @@ Route::group(['prefix'=>'/admin'], function () {
 Route::get('/getroom','PhongController@getroom');
 Route::get('/bookedroom','PhongController@bookedroom');
 Route::get('/booked','Admin\AdminController@booked');
+Route::get('/roombytype/{id}','PhongController@getnumroombytype');
+Route::get('/updatebook/{id}/{idroom}','BookingController@updatebook');
+Route::get('/getbed/{id}','PhongController@getbed');

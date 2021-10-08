@@ -14,15 +14,24 @@ class PhongController extends Controller
     }
 
     public function getroom(){
-     $data = DB::select("select phong.ID, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
-      where phong.ID_LoaiPhong = loaiphong.ID and TrangThai = '0'");
+      // get list of available rooms
+     $data = PhongModel::getroom();
      //dd($data);
     return json_encode($data);
     }
     public function bookedroom(){
-      $data = DB::select("select phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,phong.SoGiuong,TenKH
-       from phong,loaiphong,booking
-       where phong.ID_LoaiPhong = loaiphong.ID and booking.SoPhong = phong.SoPhong and phong.TrangThai = '1'");
-      return json_encode($data);
+      // get list of booked room
+      $data = PhongModel::getroombooked(); 
+         return json_encode($data);
+    }
+    public function getnumroombytype($val){
+       
+       $data = PhongModel::getIdByType($val);
+         return json_encode($data);
+    }
+
+    public function getbed($val){
+      $data = PhongModel::getnumbed($val);
+     return json_encode($data);
     }
 }

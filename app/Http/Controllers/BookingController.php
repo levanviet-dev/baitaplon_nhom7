@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\BookingModel;
+use App\Models\KhachHangModel;
+use phpDocumentor\Reflection\Types\Null_;
 
 class BookingController extends Controller
 {
@@ -37,6 +39,8 @@ class BookingController extends Controller
         $SoThe = $request->cardnumber; 
         $DiaChi = $request->address;
         $SoPhong = "0";
+        $SoGiuong = $request->bed;
+        $SoNguoi = $request->nperson;
         BookingModel::insert(
            [
               'ID' => $id,
@@ -51,7 +55,9 @@ class BookingController extends Controller
               'TrangThai'=>$TrangThai,
               'SoThe' => $SoThe,
               'DiaChi'=> $DiaChi,
-              'SoPhong'=> $SoPhong
+              'SoPhong'=> $SoPhong,
+              'SoGiuong' =>$SoGiuong,
+              'SoNguoi' => $SoNguoi
            ]
 
         );
@@ -69,5 +75,18 @@ class BookingController extends Controller
         $id = ++$id;
       //  echo 'the old '.$id;
        return $id;
+    }
+
+
+    // function update booking in admin
+    public function updatebook($id,$idroom){
+    
+    if($idroom== 'null'){
+
+        return 0;
+    }
+        $data = BookingModel::updatebook($id,$idroom);
+        KhachHangModel::creatCus($id);
+        return 1;
     }
 }

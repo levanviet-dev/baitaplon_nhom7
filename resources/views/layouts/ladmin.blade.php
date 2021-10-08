@@ -60,10 +60,10 @@
         <!--/. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu" >
 
                     <li>
-                        <a class="active-menu" href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a  href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-desktop"></i> News Letters</a>
@@ -75,7 +75,7 @@
                         <a href="#"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-qrcode"></i> Profit</a>
+                        <a href="#"><i class="fa fa-qrcode"></i> Customer</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -83,7 +83,12 @@
                 </ul>
 
             </div>
+           <style> 
+           .nav li:hover{
+             background-color: rgb(108, 108, 236);
 
+           }
+         </style>
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
