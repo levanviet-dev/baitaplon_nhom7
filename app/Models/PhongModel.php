@@ -23,17 +23,26 @@ class PhongModel extends Model
         where phong.ID_LoaiPhong = loaiphong.ID and booking.SoPhong = phong.SoPhong and phong.TrangThai = '1'"); 
         return $data;
     }
+    //function get room by id type room
     public static function getIdByType($val){
-        $data = DB::select("select phong.SoPhong,Phong.ID from phong, loaiphong 
+        $data = DB::select("select phong.SoPhong,Phong.ID,phong.SoGiuong from phong, loaiphong 
         where phong.ID_LoaiPhong = LoaiPhong.ID and TrangThai = '0'
          and loaiphong.TenLoai = '$val'");
         return $data;       
 
     }
+    //function get number bed of room
     public static function getnumbed($val){
-      $data = DB::select("select distinct Phong.SoGiuong from phong where ID_LoaiPhong = '$val'"); 
+      $data = DB::select("select distinct Phong.SoGiuong,GiaTien from phong where ID_LoaiPhong = '$val'"); 
       return $data;
 
 
     }
+    // function get price of room by type room and number of beds
+    public static function getmoney($typeroom,$numbed){
+      $data = DB::select("Select GiaTien from phong where ID_LoaiPhong = '$typeroom' and ID = '$numbed'");      
+     return $data;
+    }
+
+
 }

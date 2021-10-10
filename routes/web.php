@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-
+// router customer 
 Route::get('/booking','BookingController@index');
-
 Route::post('/create','BookingController@create');
 // admin router
 Route::group(['prefix'=>'/admin'], function () {
@@ -32,10 +31,18 @@ Route::group(['prefix'=>'/admin'], function () {
     
     Route::get('/test','Admin\AdminController@test');
 });
-// route get data
+// route get data by api
+// route get room view dashboard get room available
 Route::get('/getroom','PhongController@getroom');
+// get data room booked
 Route::get('/bookedroom','PhongController@bookedroom');
+// get data table booking 
 Route::get('/booked','Admin\AdminController@booked');
+// get data return number's room of by type
 Route::get('/roombytype/{id}','PhongController@getnumroombytype');
+// update roombooking
 Route::get('/updatebook/{id}/{idroom}','BookingController@updatebook');
+//get data numbed for customer booking choose
 Route::get('/getbed/{id}','PhongController@getbed');
+// get moneys room 
+Route::get('/getmoney/{id}/{num}','PhongController@getmoneyroom');

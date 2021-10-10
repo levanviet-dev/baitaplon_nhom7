@@ -52,7 +52,7 @@
                                        # code...
                                      echo "
                                      <tr><td>$d->TenKH</td><td>$d->Email</td><td>$d->LoaiThe : $d->SoThe</td>
-                                        <td>$d->DiaChi</td><td>$d->LoaiPhong</td><td>$d->SoNguoi</td><td>$d->TenDichVu</td>
+                                        <td>$d->DiaChi</td><td data-id=".$d->SoGiuong." data-typeroom=".$d->loaiphongID.">$d->LoaiPhong</td><td>$d->SoNguoi</td><td>$d->TenDichVu</td>
                                         <td>$d->CheckIn</td><td>$d->CheckOut</td><td data-id = ".$d->GiaTien.">$d->SoDienThoai</td><td>
                                             <button class="."selected"." data-id=".$d->ID.">OK</button>
                                             </td>
@@ -65,7 +65,7 @@
                                     
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {{-- {!! $data->links() !!} --}}
+                                    {{-- {!! $data->render() !!} --}}
                                 </div>
                             </div>
                         </div>
@@ -161,6 +161,7 @@ loadbookedroom();
 
 // click selected
 var id,idroom,numroom;
+var typeroomid = "";
 //
 $('.selected').click(function(){
     id = $(this).data('id');
@@ -169,16 +170,21 @@ var phone = $(this).closest('tr').find('td:nth-child(10)').text();
 var name =$(this).closest('tr').find('td:first').text();
 var adress = $(this).closest('tr').find('td:nth-child(4)').text();
 var typeroom = $(this).closest('tr').find('td:nth-child(5)').text();
+var numerbed = $(this).closest('tr').find('td:nth-child(5)').data('id');
 var card = $(this).closest('tr').find('td:nth-child(3)').text();
 var money = $(this).closest('tr').find('td:nth-child(10)').data("id")+"VND";
-//alert(id);
+var numperson = $(this).closest('tr').find('td:nth-child(6)').text();
+typeroomid = $(this).closest('tr').find('td:nth-child(5)').data('typeroom');
+// title of modal
 var title = "Xác nhận đặt phòng";
 $('.modal-title').html(title);
+//
 var str = "<table><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> <input value= "+phone+">  </td><tr>";
   
   str += "<tr> <td> <label>Tên khách hàng: </label> </td><td> "+name+" </td></tr>";
   str += "<tr> <td> <label>Địa chỉ: </label> </td><td> "+adress+"  </td></tr>";
   str += "<tr> <td> <label>Loại phòng: </label> </td><td> "+typeroom+"  </td></tr>";
+  str += "<tr> <td> <label>Số giường khách đặt: </label> </td><td> "+numerbed+" giường cho "+numperson+" người </td></tr>";
   str += "<tr> <td> <label>Số phòng: </label> </td><td> "
   +" <select id="+"numroom"+">  </select> </td></tr>";
   str += "<tr> <td> <label>Thẻ: </label> </td><td> "+card+"  </td></tr>";
@@ -193,15 +199,36 @@ var str = "<table><tr><td> <label>Số điện thoại khách hàng: </label> </
 
      var r = JSON.parse(data);
 
-  var room = "";  
+  var room = "<option> </option>";  
     for(var  i = 0 ; i < r.length ; i++){
-    room += "<option value="+r[i]['ID']+">"+r[i]['SoPhong']+"</option>";
+    room += "<option value="+r[i]['ID']+">"+r[i]['SoPhong']+" ("+r[i]['SoGiuong']+" Giường)</option>";
     }
 
     $('#numroom').html(room);
 
      }
   });
+// update money of booking room
+
+
+$('#numroom').change(function(){
+    
+  var nameroom = $(this).val();
+  console.log(typeroomid);
+// todo 
+  $.ajax({
+    url: 'http://localhost:8080/baitaplon_nhom7/getmoney/'+typeroomid+'/'+nameroom,
+   datatype: 'JSON',
+  success: function(data){
+    console.log(data);}
+    
+  
+  });
+
+});
+
+
+
 
 // update  element
 
@@ -222,9 +249,7 @@ $('#update').click(function(){
         alert('Vui lòng nhập đầy đủ');
       }
   }
-
-
-  });
+      });
 
 
 })
@@ -256,6 +281,27 @@ function loadbookedroom(){
     }
 
   });
+}
+
+
+function getmoneyroom(idtype,numroom){
+
+  $.ajax({
+  url: 'http://localhost:8080/baitaplon_nhom7/getmoney/'+idtype+'/'+numroom,
+   datatype: 'JSON',
+  success: function(data){
+  var s = JSON.parse(data);
+  console.log(data);
+   }
+  });
+
+
+
+}
+
+function getmoney(typemoney,servicemoney,day){
+  var total= (typemoney*day+servicemoney);
+  $('#totalprice').val(total);
 }
 
 </script>  

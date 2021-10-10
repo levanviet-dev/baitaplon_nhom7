@@ -34,4 +34,10 @@ class PhongController extends Controller
       $data = PhongModel::getnumbed($val);
      return json_encode($data);
     }
+
+    public function getmoneyroom($idtype,$numroom){
+     // echo "sada";
+      $data = PhongModel::getmoney($idtype,$numroom);
+      return json_encode($data);
+    }
 }

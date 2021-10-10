@@ -107,7 +107,7 @@
                                                 <?php
                                                 foreach ($roomtype as $r) {
                                                     # code...
-                                                    echo '<option value="'.$r->ID.'">'.$r->TenLoai.'</option>';
+                                                    echo '<option value="'.$r->ID.' ">'.$r->TenLoai.'</option>';
                                                 }
                                                 
                                                 ?>
@@ -153,12 +153,12 @@
 							 
 							  <div class="form-group">
                                             <label>Service</label>
-                                            <select  name="service" class="form-control"required>
-												<option value selected ></option>
+                                            <select id="service" name="service" class="form-control"required>
+												<option value selected  ></option>
                                                <?php
                                                foreach ($service as $s) {
                                                    # code...
-                                                echo '<option value="'.$s->ID.'">'.$s->TenDichVu.'</option>';
+                                                echo '<option value="'.$s->ID.'" data-id="'.$s->GiaTien.'">'.$s->TenDichVu.'</option>';
                                                }
                                                
                                                ?>
@@ -173,17 +173,22 @@
                               </div>
 							  <div class="form-group">
                                             <label>Check-In</label>
-                                            <input name="cin" type ="date" class="form-control" required>
+                                            <input name="cin" type ="date" id="cin" class="form-control" required>
                                             
                                </div>
 							   <div class="form-group">
                                             <label>Check-Out</label>
-                                            <input name="cout" type ="date" class="form-control" required>
+                                            <input name="cout" type ="date" id="cout" class="form-control" required>
                                             
                                </div>
+           
                        </div>
-                        
+                       
                     </div>
+                     <div class="form-group">
+                                  <label>Expected price (VND)</label>
+                                  <input id="totalprice" name="totalprice" readonly  type="text"  value="0">
+                                </div>
                 </div>
 				
 				
@@ -241,24 +246,80 @@ $(".troom").change(function(){
   console.log(data);
    var numbed = JSON.parse(data);
 
-  var str = "";
+  var str = "<option value selected  ></option>";
    for(var i = 0 ; i < numbed.length ; i++){
-   str += "<option value= "+numbed[i]['SoGiuong']+">"+numbed[i]['SoGiuong']+"</option> <br>"
+   str += "<option data-id='"+numbed[i]['GiaTien']+"' value= "+numbed[i]['SoGiuong']+">"+numbed[i]['SoGiuong']+"</option> <br>"
    }
    console.log(str);
   $('#bed').html(str);
-
-
-  }
-
+   }
   });
 
 
 
 });
+// get money:
+
+var typemoney = 0;
+var servicemoney = 0;
+var day = 0;
+// money of bed
+$('#bed').change(function(){
+    
+  typemoney = $("#bed").find(":selected").data("id");
+  console.log(typemoney);
+  getmoney(typemoney,servicemoney,day);
+});
+// money of service
+$('#service').change(function(){
+    if($("#service").find(":selected").data("id")){
+servicemoney = $("#service").find(":selected").data("id");
+console.log(servicemoney);
+getmoney(typemoney,servicemoney,day);
+}
+else{ 
+    servicemoney = 0
+    getmoney(typemoney,servicemoney,day);
+    };
+});
+// money of day
+$('#cin').change(function(){
+ console.log($(this).val());
+ if($('#cout').val()){
+  day = getday($(this).val(),$('#cout').val());
+  getmoney(typemoney,servicemoney,day);
+ }
+
+});
+$('#cout').change(function(){
+ console.log($(this).val());
+ if($('#cin').val()){
+  day = getday($('#cin').val(),$('#cout').val());
+  getmoney(typemoney,servicemoney,day);
+ }
 
 });
 
+});
 
+function getday(from,to){
+    const start = new Date(from) //clone
+  const end = new Date(to) //clone
+  let dayCount = 0
+while (end > start) {
+dayCount++
+start.setDate(start.getDate() + 1)
+}
+
+
+return dayCount
+
+}
+
+
+function getmoney(typemoney,servicemoney,day){
+  var total= (typemoney*day+servicemoney);
+  $('#totalprice').val(total);
+}
 </script>
 </html>

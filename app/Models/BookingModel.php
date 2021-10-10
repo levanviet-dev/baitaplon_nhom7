@@ -13,7 +13,7 @@ class BookingModel extends Model
     public static function getbooking(){
         $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, CheckOut,
     TrangThai,SoThe,TenDichVu,SoPhong, booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",
-    TrangThai, loaiphong.TenLoai "LoaiPhong",DiaChi, 
+    TrangThai, loaiphong.TenLoai "LoaiPhong", loaiphong.ID "loaiphongID",DiaChi, booking.SoGiuong  "SoGiuong" ,
     (loaiphong.giatien+dichvu.giatien) "GiaTien" 
     from Booking,LoaiPhong,DichVu,loaithe 
     where Booking.ID_LoaiPhong = LoaiPhong.ID 
