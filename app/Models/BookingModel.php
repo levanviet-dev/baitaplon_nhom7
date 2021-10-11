@@ -14,7 +14,7 @@ class BookingModel extends Model
         $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, CheckOut,
     TrangThai,SoThe,TenDichVu,SoPhong, booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",
     TrangThai, loaiphong.TenLoai "LoaiPhong", loaiphong.ID "loaiphongID",DiaChi, booking.SoGiuong  "SoGiuong" ,
-    (loaiphong.giatien+dichvu.giatien) "GiaTien" 
+    (loaiphong.giatien+dichvu.giatien) "GiaTien", dichvu.GiaTien "TienDV" 
     from Booking,LoaiPhong,DichVu,loaithe 
     where Booking.ID_LoaiPhong = LoaiPhong.ID 
     and Booking.ID_DichVu = DichVu.ID 

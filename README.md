@@ -8,7 +8,11 @@
 </p>
 
 ## About project
+<<<<<<< HEAD
 <a href="https://github.com/Hello0903/baitaplon_nhom7/blob/main/myhotel%20(3).sql">link file sql:</a>
+=======
+<a href="https://github.com/Hello0903/baitaplon_nhom7/blob/main/myhotel%20(3).sql" target="_blank">link file sql</a>
+>>>>>>> fff5a5fb3cbac954b434206bfebed7e921c9a9f7
 <p>update 1 : ADD template</p>
 <p>Update 2 Login, new booking room, customer booking,modal bootstrap,confirm update customer</p>
 <p>update 3 ..... </p>

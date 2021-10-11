@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\BookingModel;
 use App\Models\KhachHangModel;
+use GrahamCampbell\ResultType\Success;
 use phpDocumentor\Reflection\Types\Null_;
+use PhpParser\Node\Stmt\Global_;
 
 class BookingController extends Controller
-{
+{   
     //
     public function index(){
         $data = BookingModel::all();
@@ -61,8 +63,7 @@ class BookingController extends Controller
            ]
 
         );
-
-
+        echo '<script> alert("Cảm ơn bạn đã sử dụng dịch vụ. Chúng tôi sẽ liên lạc bạn sớm") </script>';
         return $this->index();
     }
     protected function getIDs(){

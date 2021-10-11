@@ -78,7 +78,7 @@
                         <a href="#"><i class="fa fa-qrcode"></i> Customer</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
 
