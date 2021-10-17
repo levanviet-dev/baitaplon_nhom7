@@ -12,15 +12,16 @@ class PhongModel extends Model
     use HasFactory;
     // function get data room 
     public static function getroom(){
-        $data = DB::select("select phong.ID, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
+        $data = DB::select("select  phong.ID, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
         where phong.ID_LoaiPhong = loaiphong.ID and TrangThai = '0'");
         return $data;
     }
     // function get data room booked
     public static function getroombooked(){
-        $data = DB::select("select phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,phong.SoGiuong,TenKH
+        $data = DB::select("select distinct phong.ID, phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,phong.SoGiuong,TenKH
         from phong,loaiphong,booking
-        where phong.ID_LoaiPhong = loaiphong.ID and booking.SoPhong = phong.SoPhong and phong.TrangThai = '1'"); 
+        where phong.ID_LoaiPhong = loaiphong.ID and booking.SoPhong = phong.SoPhong and phong.TrangThai = '1'
+        order by booking.checkin"); 
         return $data;
     }
     //function get room by id type room

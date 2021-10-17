@@ -122,7 +122,33 @@
 
 
             </div>
-
+            {{-- chart booking --}}
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
+                            <button class="btn btn-primary" type="button">
+                                Chart API <span class="badge"></span>
+                            </button>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <h3>Số khách đến trong năm <?php
+                                    echo date('Y'); 
+                                    ?></h3>
+                                <div >
+                                    <canvas id="myChart"style="height: 10em;"></canvas>
+                                  </div>               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            {{-- end --}}
             <div class="container">
                 <!-- Trigger the modal with a button -->
 
@@ -147,15 +173,18 @@
                         </div>
 
                     </div>
-                </div>
+              </div>    
+            </div>
+        </div>
+    </div>    
                 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script>
                     $(document).ready(function() {
                         // get element selected
                         $(".selected").attr("data-toggle", "modal");
                         $('.selected').attr("data-target", "#myModal");
                         loadbookedroom();
-
                         // click selected
                         var id,idroom,numroom, cin, cout, moneyservice = 0;
                         var typeroomid = "";
@@ -199,34 +228,27 @@
                                 datatype: 'JSON',
                                 success: function(data) {
                                     console.log(data);
-
                                     var r = JSON.parse(data);
-
                                     var room = "<option value='null'> </option>";
                                     for (var i = 0; i < r.length; i++) {
                                         room += "<option value=" + r[i]['ID'] + ">" + r[i]['SoPhong'] +
                                             " (" + r[i]['SoGiuong'] + " Giường)</option>";
                                     }
-
                                     $('#numroom').html(room);
-
                                 }
                             });
                             // update money of booking room
                             var moneyroom = 0;
 
                             $('#numroom').change(function() {
-
                                 var nameroom = $(this).val();
                                  if(nameroom == " ") return;
-
                                 console.log('So phong: '+nameroom);
                                 // todo 
                                 $.ajax({
                                     url: 'http://localhost:8080/baitaplon_nhom7/getmoney/'+typeroomid + '/' + nameroom,
                                     datatype: 'JSON',
-                                    success: function(data) {
-                                       
+                                    success: function(data) { 
                                        var datas = JSON.parse(data);
                                         moneyroom = datas[0]['GiaTien'];
                                         var day = getday(cin, cout);
@@ -234,16 +256,9 @@
                                          console.log("So ngay: "+ day);
                                          console.log('Tien dich vu: '+ moneyservice);
                                         getmoney(moneyroom,moneyservice,day);
-
-
                                     }
-
                                 });
-
                             });
-
-
-
 
                             // update  element
 
@@ -264,14 +279,8 @@
                                         }
                                     }
                                 });
-
-
                             })
-
-
                         });
-
-
                     });
   //
                     function loadbookedroom() {
@@ -290,13 +299,12 @@
                                         "<td>" + s[i]['SoNguoi'] + "</td>" + "<td>" + s[i]['TenDichVu'] + "</td>" + "<td>" +
                                         s[i]['CheckIn'] + "</td>" +
                                         "<td>" + s[i]['CheckOut'] + "</td>" + "<td>" + s[i]['SoDienThoai'] + "</td>" +
-                                        "<td><button class=" + "btn btn-primary" + ">OK</button></td>" +
+                                        "<td><button class=" + "btn btn-primary" + ">Payment</button></td>" +
                                         "</tr>";
                                 }
                                 $('#bookedroom').html(str);
                                 $('.bookedr').html(s.length);
                             }
-
                         });
                     }
 
@@ -311,9 +319,6 @@
                                 console.log(data);
                             }
                         });
-
-
-
                     }
 
                     function getmoney(typemoney, servicemoney, day) {
@@ -332,6 +337,38 @@
                         }
                         return dayCount
                     }
+//  chart js
+                    
+const data = {
+  labels: [
+    'khách đến',
+    'Khách bỏ đặt',
+  ],
+  datasets: [{
+    label: 'Số khách hàng đến khách sạn sau đặt phòng',
+    data: [50, 50],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
+const config = {
+  type: 'doughnut',
+  data: data,
+};
+var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+
+
+
+
+
                 </script>
 
 

@@ -72,10 +72,10 @@
                         <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-qrcode"></i> Payment</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/payment"><i class="fa fa-qrcode"></i> Payment</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-qrcode"></i> Customer</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/customer"><i class="fa fa-qrcode"></i> Customer</a>
                     </li>
                     <li>
                         <a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Status <small>Room Booking </small>
+                            Status <small>Hotel </small>
                         </h1>
                     </div>
                 </div>

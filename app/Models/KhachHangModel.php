@@ -67,6 +67,12 @@ class KhachHangModel extends Model
         
     }
   
+  public static function getall(){
+    $data = DB::select("select khachhang.ID,TenKhachHang,SoDienThoai,Email,SoThe,DiaChi,
+    loaithe.TenLoai from khachhang,loaithe where khachhang.ID_LoaiThe = loaithe.ID");
 
+   return $data;
+
+  }
 
 }

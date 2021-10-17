@@ -90,4 +90,12 @@ class BookingController extends Controller
         KhachHangModel::creatCus($id);
         return 1;
     }
+    // get data customer want payment
+    function customerpayment($idbook){
+      $data = BookingModel::customerpayment($idbook);
+      return json_encode($data);
+      // tomorow Complete the payment list
+
+    }
+
 }

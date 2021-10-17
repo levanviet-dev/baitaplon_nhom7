@@ -39,8 +39,37 @@ class BookingModel extends Model
         $data = DB::select("select SoPhong from phong where ID = '$idroom'");
        foreach($data as $r)
         $numroom = $r->SoPhong; 
-        DB::update("update booking set TrangThai = 1,SoPhong = '$numroom' where ID = '$id' ");
+        DB::update("update booking set TrangThai = 1,SoPhong = '$numroom',CheckIn = CURRENT_DATE()  where ID = '$id' ");
         DB::update("update phong set TrangThai = 1 where ID = '$idroom'");
         return 1;
     }
+
+    // function get data of customer for payment
+    public static function customerpayment($idbook){
+       DB::update("update booking set CheckOut = CURRENT_DATE() where ID = '$idbook'");
+       $book = DB::table('booking')->where('ID',$idbook)->first();
+       $phong = DB::table('phong')->where('ID_LoaiPhong',$book->ID_LoaiPhong)
+       ->where('SoPhong',$book->SoPhong)->first();
+       $giaphong = $phong->GiaTien;
+       
+       $loaiphong = DB::table('LoaiPhong')->where('ID',$phong->ID_LoaiPhong)->first();
+
+       $first_date = strtotime($book->CheckIn);
+       $second_date = strtotime($book->CheckOut);
+       $datediff = abs($first_date - $second_date);
+       $day =  floor($datediff / (60*60*24))==0?1:floor($datediff / (60*60*24));
+       
+       $service = DB::table('dichvu')->where('ID',$book->ID_DichVu)->first();
+       $moneyservice = $service->GiaTien;
+      // dd($moneyservice+$giaphong*$day);
+       $data = array();
+       array_Push($data, $book);
+       array_Push($data, $phong);
+       array_Push($data, $loaiphong);
+       array_Push($data, ($moneyservice+$giaphong*$day));
+        return $data;
+       
+    }
+
+
 }

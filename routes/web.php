@@ -27,8 +27,11 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/login','Auth\LoginController@login');
     Route::get('/logout','Auth\LoginController@logout');
     Route::post('/userlogin', 'Auth\LoginController@userLogin');
-     Route::get('/roombooking','Admin\AdminController@roombooking');
-    
+    Route::get('/roombooking','Admin\AdminController@roombooking');
+    Route::get('/payment','Admin\AdminController@payment'); 
+    Route::get('/customer','Admin\AdminController@customer');
+
+
     Route::get('/test','Admin\AdminController@test');
 });
 // route get data by api
@@ -46,3 +49,5 @@ Route::get('/updatebook/{id}/{idroom}','BookingController@updatebook');
 Route::get('/getbed/{id}','PhongController@getbed');
 // get moneys room 
 Route::get('/getmoney/{id}/{num}','PhongController@getmoneyroom');
+// get data payment of customer
+Route::get('/customerpayment/{id}','BookingController@customerpayment');

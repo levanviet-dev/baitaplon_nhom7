@@ -8,7 +8,7 @@ use App\Models\BookingModel;
 use Illuminate\Pagination\LengthAwarePaginator;
 use  Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Rfc4122\NilUuid;
-
+use App\Models\KhachHangModel;
 class AdminController extends Controller
 {
     // admin dashboard
@@ -30,7 +30,17 @@ class AdminController extends Controller
    return view('view_admin.roombooking');
 
   }
-  //update booking room
+  //payment
+  public function payment(){
+   return view('view_admin.payment');
+  }
+
+  // customer
+
+  public function customer(){
+    $data = KhachHangModel::getall();
+    return view('view_admin.customer',compact('data'));
+  }
   
 
 
