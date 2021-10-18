@@ -77,13 +77,9 @@ class BookingController extends Controller
       //  echo 'the old '.$id;
        return $id;
     }
-
-
     // function update booking in admin
     public function updatebook($id,$idroom){
-    
     if($idroom== 'null'){
-
         return 0;
     }
         $data = BookingModel::updatebook($id,$idroom);
@@ -96,6 +92,11 @@ class BookingController extends Controller
       return json_encode($data);
       // tomorow Complete the payment list
 
+    }
+    //function get nums of customer went to the hotel
+    function getnumcuswentto($year){
+       $data =  BookingModel::getNumCusWentto($year);  
+       return json_encode($data);
     }
 
 }

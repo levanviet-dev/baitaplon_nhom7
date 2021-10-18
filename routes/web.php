@@ -35,10 +35,12 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/test','Admin\AdminController@test');
 });
 // route get data by api
+//Admin booking room
 // route get room view dashboard get room available
 Route::get('/getroom','PhongController@getroom');
 // get data room booked
 Route::get('/bookedroom','PhongController@bookedroom');
+// Admin dashboard
 // get data table booking 
 Route::get('/booked','Admin\AdminController@booked');
 // get data return number's room of by type
@@ -49,5 +51,8 @@ Route::get('/updatebook/{id}/{idroom}','BookingController@updatebook');
 Route::get('/getbed/{id}','PhongController@getbed');
 // get moneys room 
 Route::get('/getmoney/{id}/{num}','PhongController@getmoneyroom');
+// get data nums customer went to the hotel
+Route::get('/getnumcuswent/{id}','BookingController@getnumcuswentto');
+// Admin payment
 // get data payment of customer
 Route::get('/customerpayment/{id}','BookingController@customerpayment');

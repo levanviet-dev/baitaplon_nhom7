@@ -35,6 +35,7 @@
                                                 <th>Email</th>
                                                 <th>Address</th>
                                                 <th>Card type</th>
+                                                <th>Nums card</th>
                                                 <th>More</th>
 
                                     </tr>
@@ -43,7 +44,7 @@
                                     <?php
                                         foreach ($data as $c) {                                            
                                             # code...
-                                            echo "<tr><td>$c->TenKhachHang</td>
+                                            echo "<tr><td>$c->TenKhachHang</td><td>$c->SoDienThoai</td>
                                                 <td>$c->Email</td><td>$c->DiaChi</td>
                                                 <td>$c->TenLoai</td><td>$c->SoThe</td>
                                                 <td><button>Delete</button></td>";

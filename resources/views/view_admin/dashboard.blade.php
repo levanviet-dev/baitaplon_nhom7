@@ -185,6 +185,7 @@
                         $(".selected").attr("data-toggle", "modal");
                         $('.selected').attr("data-target", "#myModal");
                         loadbookedroom();
+                        getnumcuswent();
                         // click selected
                         var id,idroom,numroom, cin, cout, moneyservice = 0;
                         var typeroomid = "";
@@ -270,7 +271,7 @@
                                     datatype: 'JSON',
                                     success: function(data) {
                                         loadbookedroom();
-
+                                        getnumcuswent();
                                         if (data == 1) {
                                             $("#" + id).remove();
                                             alert('Cập nhật thành công');
@@ -307,26 +308,13 @@
                             }
                         });
                     }
-
-
-                    function getmoneyroom(idtype, numroom) {
-
-                        $.ajax({
-                            url: 'http://localhost:8080/baitaplon_nhom7/getmoney/' + idtype + '/' + numroom,
-                            datatype: 'JSON',
-                            success: function(data) {
-                                var s = JSON.parse(data);
-                                console.log(data);
-                            }
-                        });
-                    }
-
+                    // function caculator money for customer
                     function getmoney(typemoney, servicemoney, day) {
                         var total = (typemoney * day + servicemoney);
                         console.log("total price: "+ total);
                         $('#totalprice').html(total);
                     }
-
+                    // function get nums day 
                     function getday(from, to) {
                         const start = new Date(from) //clone
                         const end = new Date(to) //clone
@@ -338,15 +326,21 @@
                         return dayCount
                     }
 //  chart js
-                    
-const data = {
+var objectdata = [1,5];          
+
+function getnumcuswent(){
+    $.ajax({
+        url: 'http://localhost:8080/baitaplon_nhom7/getnumcuswent/2021',
+        datatype: 'JSON',
+        success: function(datas) {  
+  const data = {
   labels: [
     'khách đến',
-    'Khách bỏ đặt',
+    'Khách chưa đến',
   ],
   datasets: [{
     label: 'Số khách hàng đến khách sạn sau đặt phòng',
-    data: [50, 50],
+    data: datas,
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
@@ -363,12 +357,11 @@ var myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
+        }
+        });
 
 
-
-
-
-
+}
                 </script>
 
 

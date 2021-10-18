@@ -19,10 +19,13 @@
             <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
                 <div class="panel-body">
                     <div class="panel panel-default">
-
+                        
                         <div class="panel-body">
                             <div class="table-responsive">
                                <div class="form-group">
+                                <h3>Danh sách phòng đang hoạt động</h3>
+                               </div>
+                               <div class="form-group"> 
                                  <label for="">Search</label>
                                  <input type="text">
                                  <button type="submit">Search</button>
