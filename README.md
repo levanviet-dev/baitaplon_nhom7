@@ -8,7 +8,7 @@
 </p>
 
 ## About project
-
+<h3>Các chức năng đang trong thời gian hoàn thiện</h3>
 <a href="https://github.com/Hello0903/baitaplon_nhom7/blob/main/myhotel%20(4).sql" target="_blank">link file sql</a>
 <p>update 1 : ADD template</p>
 <p>Update 2 Login, new booking room, customer booking,modal bootstrap,confirm update customer</p>
