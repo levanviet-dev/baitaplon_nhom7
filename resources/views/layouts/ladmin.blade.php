@@ -69,7 +69,7 @@
                         <a href="#"><i class="fa fa-desktop"></i> News Letters</a>
                     </li>
                     <li>
-                        <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-bar-chart-o"></i> Room</a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/baitaplon_nhom7/admin/payment"><i class="fa fa-qrcode"></i> Payment</a>

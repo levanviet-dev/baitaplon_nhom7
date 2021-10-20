@@ -31,18 +31,31 @@
                                 <thead>
                                     <tr>
                                                 <th>Name</th>
-                                                <th>Card number</th>
                                                 <th>Address</th>
                                                 <th>Room </th>
-                                                <th>Service</th>
+                                                <th>Check In</th>
+                                                <th>Check Out</th>
                                                 <th>Phone number</th>
                                                 <th>Total price</th>
                                                 <th>More</th>
 
                                     </tr>
                                 </thead>
-                                <tbody id="booked">
-
+                                <tbody id="listpayment">
+                                 <?php
+                                  foreach ($data as $p) {
+                                    # code...
+                                    echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
+                                      <td>$p->SoPhong</td><td>$p->CheckIn</td>
+                                      <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
+                                      <td>$p->TongTien</td>
+                                      <td><button id ='payment' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
+                                  }
+                                  
+                                  
+                                  
+                                  
+                                  ?>
                                    
 
                                 </tbody>
@@ -160,6 +173,30 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+// payment
+$('#payment').click(function(){
+  var name = $(this).closest('tr').find('td:first').text();
+$('.modal-title').html('Thanh toán hóa đơn: '+name);
+
+ var diachi = $(this).closest('tr').find('td:nth-child(2)').text();
+ var sophong = $(this).closest('tr').find('td:nth-child(2)').text();
+ var checkin = $(this).closest('tr').find('td:nth-child(2)').text();
+//
+ var today = new Date();
+ var checkout = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+// lấy số tiền theo check out hiện tại viết ajax
+
+ 
+
+ $('.modal-body').html('Thanh toán hóa đơn: '+checkout);
+
+
+
+});
+
+//
+
+
 const labels = ['January',
     'Febuary',
     'March',

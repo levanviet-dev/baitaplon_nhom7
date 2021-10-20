@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\BookingModel;
 use App\Models\KhachHangModel;
+use App\Http\Controllers\HoaDonController;
+use App\Models\HoaDonModel;
 use GrahamCampbell\ResultType\Success;
 use phpDocumentor\Reflection\Types\Null_;
 use PhpParser\Node\Stmt\Global_;
@@ -78,12 +80,14 @@ class BookingController extends Controller
        return $id;
     }
     // function update booking in admin
-    public function updatebook($id,$idroom){
+    public function updatebook($idbook,$idroom){
     if($idroom== 'null'){
         return 0;
     }
-        $data = BookingModel::updatebook($id,$idroom);
-        KhachHangModel::creatCus($id);
+        $data = BookingModel::updatebook($idbook,$idroom);
+         KhachHangModel::creatCus($idbook);
+        //$IDHD = HoaDonModel::getIDs();
+        //HoaDonModel::createHoaDon();
         return 1;
     }
     // get data customer want payment

@@ -12,7 +12,7 @@ class PhongController extends Controller
       $cardtype = DB::select('select * from LoaiThe');
         return view('booking',compact('data'),compact('cardtype'));
     }
-
+ // admin brach menu Room;
     public function getroom(){
       // get list of available rooms
      $data = PhongModel::getroom();

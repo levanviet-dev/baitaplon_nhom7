@@ -93,8 +93,8 @@
                         </tbody>
                         
                     </table>
-
-                </div>
+                    <button id="createroom" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Create</button>
+                  </div>
 
             </div>
 
@@ -198,7 +198,21 @@ var footer = "<button type="+"button"+" class="+"btn btn-default"+" data-dismiss
 $(".modal-footer").html(footer);
 }
 
+// create room
+$('#createroom').click(function(){
+var title = "Tạo phòng mới";
+$(".modal-title").html(title);
 
+var strcreate = "<table style='margin: 0px auto;'><tr><td> <label>Loại phòng:</label> </td><td> <input>  </td><tr>";
+  
+    strcreate += "<tr> <td> <label>Số phòng: </label> </td><td> <input>  </td></tr>";
+    strcreate += "<tr> <td> <label>Ảnh: </label> </td><td> <input>  </td></tr>";
+    strcreate += "<tr> <td> <label>Số người: </label> </td><td> <input>  </td></tr>";
+    strcreate += "<tr> <td> <label>Số giường: </label> </td><td> <input>  </td></tr>";
+    strcreate += "<tr> <td> <label>Giá tiền: </label> </td><td> <input>  </td></tr></table>";
+  $(".modal-body").html(strcreate);
+
+});
  </script>
 
 

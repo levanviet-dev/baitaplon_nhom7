@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookingModel;
+use App\Models\HoaDonModel;
 use Illuminate\Pagination\LengthAwarePaginator;
 use  Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Rfc4122\NilUuid;
@@ -32,7 +33,9 @@ class AdminController extends Controller
   }
   //payment
   public function payment(){
-   return view('view_admin.payment');
+    $data = HoaDonModel::getallHoaDon();
+   //dd($data)
+    return view('view_admin.payment',compact('data'));
   }
 
   // customer

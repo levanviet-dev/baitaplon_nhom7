@@ -32,15 +32,6 @@ class KhachHangModel extends Model
             $ID_LoaiThe = $data->ID_LoaiThe;
             $SoThe = $data->SoThe;
             $DiaChi = $data->DiaChi;
-           
-        // foreach($data as $row){
-        //     $TenKH = $row['TenKH'];
-        //     $SoDienThoai = $row['SoDienThoai'] ;
-        //     $Email = $row['Email'] ;
-        //     $ID_LoaiThe = $row['ID_LoaiThe'] ;
-        //     $SoThe = $row['SoThe'] ;
-        //     $DiaChi = $row['DiaChi'] ;
-        // }
        
         $id = -1;
         if(!DB::table('KhachHang')->first()){
@@ -63,6 +54,45 @@ class KhachHangModel extends Model
            'DiaChi' => $DiaChi
            
          ]);
+        // create bill
+
+        $idbill = -1;
+        if(!DB::table('hoadon')->first()){
+            $idbill = 0;
+        }
+        else{
+            $querys = "CAST(ID AS int) DESC";
+        $idbill = DB::table('HoaDon')->orderByRaw($querys)->take(1)->value('ID');
+        $idbill = ++$idbill;
+        }
+        $IDBILL = $idbill;
+        // caculator bill of customer
+        $book = DB::table('booking')->where('ID',$idBooking)->first();
+        $phong = DB::table('phong')->where('ID_LoaiPhong',$book->ID_LoaiPhong)
+        ->where('SoPhong',$book->SoPhong)->first();
+        $giaphong = $phong->GiaTien;
+        $loaiphong = DB::table('LoaiPhong')->where('ID',$phong->ID_LoaiPhong)->first();
+        // caculator day
+        $first_date = strtotime($book->CheckIn);
+        $second_date = strtotime($book->CheckOut);
+        $datediff = abs($first_date - $second_date);
+        $day =  floor($datediff / (60*60*24))==0?1:floor($datediff / (60*60*24));
+        $service = DB::table('dichvu')->where('ID',$book->ID_DichVu)->first();
+        $moneyservice = $service->GiaTien;
+        //
+        $total = ($moneyservice+$giaphong*$day);
+        // end
+         DB::table('HoaDon')->insert([
+           'ID' => $IDBILL,
+           'ID_KH' => $ID,
+           'TongTien' => $total,
+           'GhiChu' => 'Chưa thanh toán',
+           'TrangThai' => '0',
+           'ID_Booking'=> $idBooking,
+         ]);
+
+
+
 
         
     }

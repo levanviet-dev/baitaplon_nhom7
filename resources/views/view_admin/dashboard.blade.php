@@ -271,10 +271,10 @@
                                     datatype: 'JSON',
                                     success: function(data) {
                                         loadbookedroom();
-                                        getnumcuswent();
                                         if (data == 1) {
                                             $("#" + id).remove();
                                             alert('Cập nhật thành công');
+                                            getnumcuswent();
                                         } else {
                                             alert('Vui lòng nhập đầy đủ');
                                         }
