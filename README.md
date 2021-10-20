@@ -12,5 +12,6 @@
 <a href="https://github.com/Hello0903/baitaplon_nhom7/blob/main/myhotel%20(4).sql" target="_blank">link file sql</a>
 <p>update 1 : ADD template</p>
 <p>Update 2 Login, new booking room, customer booking,modal bootstrap,confirm update customer</p>
+<p> the new update 2.7 : payment , customer . Functions are being finalized</p>
 <p>update 3 ..... </p>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBu0t_gI5qPO7jFdfleCQhtC57GYi6Sv9EGg&usqp=CAU">
