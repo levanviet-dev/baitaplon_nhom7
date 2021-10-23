@@ -46,10 +46,10 @@
                                   foreach ($data as $p) {
                                     # code...
                                     echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
-                                      <td>$p->SoPhong</td><td>$p->CheckIn</td>
+                                      <td data-id='$p->TenDichVu'>$p->SoPhong</td><td>$p->CheckIn</td>
                                       <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
                                       <td>$p->TongTien</td>
-                                      <td><button id ='payment' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
+                                      <td><button class ='payment' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
                                   }
                                   
                                   
@@ -91,18 +91,32 @@
 
                     <table class="table">
                         <thead>
-                            <tr>
-                                <th>Loại Phòng</th>
-                                <th>Số phòng</th>
-                                <th>Số người</th>
-                                <th>Số giường</th>
-                                <th>Trạng thái</th>
-                                <th>More</th>
-                                
-                            </tr>
+                          <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Room </th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Phone number</th>
+                            <th>Total price</th>
+                            <th>More</th>
+                          </tr>
                         </thead>
                         <tbody id="rooms">
-                     
+                          <?php
+                          foreach ($dathanhtoan as $p) {
+                            # code...
+                            echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
+                              <td>$p->SoPhong</td><td>$p->CheckIn</td>
+                              <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
+                              <td>$p->TongTien</td>
+                              <td><button class ='payed' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
+                          }
+                          
+                          
+                          
+                          
+                          ?>
                         </tbody>
                         
                     </table>
@@ -159,6 +173,8 @@
            
           </div>
           <div class="modal-footer">
+            <button id="cuspay" type="button" class="btn btn-default"
+            data-dismiss="modal">pay</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -173,29 +189,75 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    $(document).ready(function() {
 // payment
-$('#payment').click(function(){
+var idHoaDon = '';
+$('.payment').click(function(){
   var name = $(this).closest('tr').find('td:first').text();
+  idHoaDon = $(this).closest('tr').find('td:first').data('id');
 $('.modal-title').html('Thanh toán hóa đơn: '+name);
-
+ var id =  $(this).closest('tr').find('td:first').data('id');
  var diachi = $(this).closest('tr').find('td:nth-child(2)').text();
- var sophong = $(this).closest('tr').find('td:nth-child(2)').text();
- var checkin = $(this).closest('tr').find('td:nth-child(2)').text();
+ var sophong = $(this).closest('tr').find('td:nth-child(3)').text();
+ var dichvu = $(this).closest('tr').find('td:nth-child(3)').data('id');
+ var checkin = $(this).closest('tr').find('td:nth-child(4)').text();
 //
  var today = new Date();
  var checkout = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+ var totalprice = "";
 // lấy số tiền theo check out hiện tại viết ajax
+$.ajax({
+  url: 'http://localhost:8080/baitaplon_nhom7/getmoneybyIDHD/'+id,
+  datatype: 'JSON',
+  success: function(data){
+    var pr = JSON.parse(data);
+       console.log(pr[0]['TongTien']); 
+       totalprice = pr[0]['TongTien'];
 
- 
+var str = "<table class='table' style='margin : 0 auto;'><tr><td>Địa chỉ: </td><td>"+ diachi +"</td></tr>";
+    str += "<tr><td>Số phòng: </td><td left='20px'>"+ sophong +"</td></tr>";
+    str += "<tr><td>Ngày vào: </td><td>"+ checkin +"</td></tr>";
+    str += "<tr><td>Ngày ra: </td><td>"+ checkout +"</td></tr>";
+    str += "<tr><td>Dịch vụ: </td><td>"+ dichvu +"</td></tr>";
+    str += "<tr><td>Loại hình thanh toán: </td><td><select id='cars'><option data-id='0'>Tiền mặt</option>"+
+  "<option data-id='1'>Dùng thẻ</option></select></td></tr>";
+    str += "<tr><td>Tổng tiền: </td><td>"+ totalprice +"</td></tr>"; 
 
- $('.modal-body').html('Thanh toán hóa đơn: '+checkout);
+$('.modal-body').html(str);
+// var updatepay = '<a  class="btn btn-default payings"  data-dismiss="modal">Pay</a>';
+// updatepay += '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+// $('.modal-footer').html(updatepay);
 
-
+  }
+});
 
 });
 
 //
+$('#cuspay').click(function(){
+  console.log(idHoaDon);
+  var cachthanhtoan = $('#cars option:selected').data('id');
+  console.log(cachthanhtoan);
 
+  $.ajax({
+  url: 'http://localhost:8080/baitaplon_nhom7/updatebillpayed/'+idHoaDon+'/'+cachthanhtoan,
+  datatype: 'JSON',
+  success: function(data){
+    if(data == 1){
+        alert('Cảm ơn bạn đã thanh toán!');
+        window.open(location.reload(true));
+    }
+
+
+
+  }
+  });
+
+
+
+
+})
+//
 
 const labels = ['January',
     'Febuary',
@@ -250,6 +312,9 @@ var myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
+
+
+    });
  </script>
 
 

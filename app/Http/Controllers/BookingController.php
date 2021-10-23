@@ -85,9 +85,9 @@ class BookingController extends Controller
         return 0;
     }
         $data = BookingModel::updatebook($idbook,$idroom);
-         KhachHangModel::creatCus($idbook);
+         $IDKH = KhachHangModel::creatCus($idbook);
         //$IDHD = HoaDonModel::getIDs();
-        //HoaDonModel::createHoaDon();
+        HoaDonModel::createHoaDon($IDKH,$idbook);
         return 1;
     }
     // get data customer want payment

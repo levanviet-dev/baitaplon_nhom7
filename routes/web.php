@@ -56,3 +56,8 @@ Route::get('/getnumcuswent/{id}','BookingController@getnumcuswentto');
 // Admin payment
 // get data payment of customer
 Route::get('/customerpayment/{id}','BookingController@customerpayment');
+// get money of bill by id bill
+Route::get('/getmoneybyIDHD/{id}','HoaDonController@getmoneybyIDHD');
+// update bill when customer pay money for the my hothel
+Route::get('/updatebillpayed/{id}/{loai}','HoaDonController@updatebillpayed');
+

@@ -34,8 +34,9 @@ class AdminController extends Controller
   //payment
   public function payment(){
     $data = HoaDonModel::getallHoaDon();
+    $dathanhtoan = HoaDonModel::getHoaDonThanhToan();
    //dd($data)
-    return view('view_admin.payment',compact('data'));
+    return view('view_admin.payment',compact('data','dathanhtoan'));
   }
 
   // customer

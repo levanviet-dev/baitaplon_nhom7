@@ -210,7 +210,7 @@
                             $('.modal-title').html(title);
                             //
                             var str =
-                                "<table><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> <input value= " +
+                                "<table class='table''><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> <input value= " +
                                 phone + ">  </td><tr>";
 
                             str += "<tr> <td> <label>Tên khách hàng: </label> </td><td> " + name + " </td></tr>";
