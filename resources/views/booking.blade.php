@@ -22,7 +22,7 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="./"><i class="fa fa-home"></i> Homepage</a>
+                        <a href="./"><i class="fa fa-home"></i> Trang chủ</a>
                     </li>
 
                 </ul>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            RESERVATION <small></small>
+                            Đặt phòng <small></small>
                         </h1>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
                     <div class="col-md-5 col-sm-5">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                PERSONAL INFORMATION
+                                Thông tin người dùng
                             </div>
                             <div class="panel-body">
                                 <form name="form" method="post" action="create">
                                     @csrf
                                     {{-- person info --}}
                                     <div class="form-group">
-                                        <label>Your name</label>
+                                        <label>Tên của bạn</label>
                                         <input name="name" class="form-control" required>
 
                                     </div>
@@ -62,11 +62,11 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Address</label>
+                                        <label for="">Địa chỉ</label>
                                         <input type="text" name="address" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Card type</label>
+                                        <label>Loại thẻ</label>
                                         <select name="cardtype" class="form-control" required>
                                             <option value selected></option>
                                             <?php
@@ -79,12 +79,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Card number</label>
+                                        <label for="">Số thẻ</label>
                                         <input type="text" name="cardnumber" class="form-control" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Phone Number</label>
+                                        <label>Số điện thoại</label>
                                         <input name="phone" type="text" class="form-control" required>
 
                                     </div>
@@ -99,11 +99,11 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    RESERVATION INFORMATION
+                                    Thông tin đặt phòng
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label>Type Of Room *</label>
+                                        <label>Loại phòng *</label>
                                         <select name="troom" class="form-control troom" required>
                                             <option value selected></option>
                                             <?php
@@ -121,7 +121,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Bedding Type</label>
+                                        <label>Số giường</label>
                                         <select name="bed" class="form-control" id="bed" required>
                                             <option value selected></option>
                                             {{-- <option value="1">Double</option> --}}
@@ -154,7 +154,7 @@
 
 
                                     <div class="form-group">
-                                        <label>Service</label>
+                                        <label>Dịch vụ</label>
                                         <select id="service" name="service" class="form-control" required>
                                             <option value selected></option>
                                             <?php
@@ -174,12 +174,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Check-In</label>
+                                        <label>Ngày vào</label>
                                         <input name="cin" type="date" id="cin" class="form-control" required>
 
                                     </div>
                                     <div class="form-group">
-                                        <label>Check-Out</label>
+                                        <label>Ngày ra</label>
                                         <input name="cout" type="date" id="cout" class="form-control" required>
 
                                     </div>
@@ -188,7 +188,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label>Expected price (VND)</label>
+                                <label>Số tiền dự kiến (VND)</label>
                                 <input id="totalprice" name="totalprice" readonly type="text" value="0">
                             </div>
                         </div>
@@ -196,13 +196,13 @@
 
                         <div class="col-md-12 col-sm-12">
                             <div class="well">
-                                <h4>HUMAN VERIFICATION</h4>
-                                <p>Type Below this code <?php $Random_code = rand();
+                                <h4>Xác nhận</h4>
+                                <p>Nhập bên dưới mã này <?php $Random_code = rand();
                                 echo $Random_code; ?> </p><br />
-                                <p>Enter the random code<br /></p>
+                                <p>Nhập dãy mã ngẫu nhiên <br /></p>
                                 <input type="text" name="code1" title="random code" />
                                 <input type="hidden" name="code" value="<?php echo $Random_code; ?>" />
-                                <input type="submit" name="submit" class="btn btn-primary">
+                                <input type="submit" name="Gửi" class="btn btn-primary">
                                 </form>
 
                             </div>

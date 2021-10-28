@@ -60,7 +60,7 @@ class HoaDonModel extends Model
         // get all bill payed
         public static function getHoaDonThanhToan(){
             $data = DB::select("select  hoadon.ID,hoadon.TongTien, booking.TenKH,booking.SoDienThoai,dichvu.TenDichVu,
-            booking.CheckIn,booking.CheckOut,booking.DiaChi , booking.SoPhong FROM hoadon, 
+            hoadon.GhiChu,booking.CheckIn,booking.CheckOut,booking.DiaChi , booking.SoPhong FROM hoadon, 
             booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 1 AND dichvu.ID = booking.ID_DichVu");
             return $data;
         }

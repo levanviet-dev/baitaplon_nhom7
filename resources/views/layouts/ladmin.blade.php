@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator </title>
+    <title>Trang quản lý khách sạn </title>
     <!-- Bootstrap Styles-->
     <link href="{{url('public/adsite')}}/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin"> My Admin </a>
+                <a class="navbar-brand" href="admin"> Quản lý </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -44,12 +44,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Thông tin người dùng</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="http://localhost:8080/baitaplon_nhom7/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -63,22 +63,22 @@
                 <ul class="nav" id="main-menu" >
 
                     <li>
-                        <a  href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a  href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Trang đặt phòng</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-desktop"></i> News Letters</a>
+                        <a href="#"><i class="fa fa-desktop"></i> Thư mới</a>
                     </li>
                     <li>
-                        <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-bar-chart-o"></i> Room</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-qrcode"></i> Phòng</a>
                     </li>
                     <li>
-                        <a href="http://localhost:8080/baitaplon_nhom7/admin/payment"><i class="fa fa-qrcode"></i> Payment</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/payment"><i class="fa fa-qrcode"></i> Thanh toán</a>
                     </li>
                     <li>
-                        <a href="http://localhost:8080/baitaplon_nhom7/admin/customer"><i class="fa fa-qrcode"></i> Customer</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/customer"><i class="fa fa-qrcode"></i> Khách hàng</a>
                     </li>
                     <li>
-                        <a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                     </li>
                 </ul>
 

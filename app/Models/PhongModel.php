@@ -18,10 +18,11 @@ class PhongModel extends Model
     }
     // function get data room booked
     public static function getroombooked(){
-        $data = DB::select("select distinct phong.ID, phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,phong.SoGiuong,TenKH
-        from phong,loaiphong,booking
-        where phong.ID_LoaiPhong = loaiphong.ID and booking.SoPhong = phong.SoPhong and phong.TrangThai = '1'
-        order by booking.checkin"); 
+        $data = DB::select("SELECT phong.ID,phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,
+        phong.SoGiuong,TenKH FROM booking ,
+        (SELECT DISTINCT booking.SoPhong,booking.ID FROM booking WHERE TrangThai = 1 ORDER BY CheckIn DESC )
+         as a,phong,loaiphong WHERE a.ID = booking.ID AND booking.ID_LoaiPhong = loaiphong.ID 
+        AND booking.SoPhong = phong.SoPhong AND booking.ID_LoaiPhong = phong.ID_LoaiPhong"); 
         return $data;
     }
     //function get room by id type room
@@ -44,6 +45,36 @@ class PhongModel extends Model
       $data = DB::select("Select GiaTien from phong where ID_LoaiPhong = '$typeroom' and ID = '$numbed'");      
      return $data;
     }
+    // function create room
 
+    public static function createroom($ID_LoaiPhong,$SoPhong,$Anh,$SoGiuong,$SoNguoi,$Gia){
+        // get id
+         $idr = -1;
+         if(!DB::table('phong')->first()){
+             $idr = 0;
+         }
+         else{
+             $querys = "CAST(ID AS int) DESC";
+         $idr = DB::table('phong')->orderByRaw($querys)->take(1)->value('ID');
+         $idr = ++$idr;
+         }
+         $IDROOM = $idr;
+
+         DB::table('Phong')->insert([
+            'ID' => $IDROOM,
+            'ID_LoaiPhong' => $ID_LoaiPhong,
+            'SoPhong' => $SoPhong,
+            'Anh' => $Anh,
+            'TrangThai' => '0',
+            'KiemTra'=> 'Bình thường',
+            'SoGiuong' => $SoGiuong,
+            'SoNguoi'=> $SoNguoi,
+            'GiaTien' => $Gia,
+            
+          ]);
+         return 1;
+
+
+    }
 
 }

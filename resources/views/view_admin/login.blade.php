@@ -3,7 +3,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>SUN RISE ADMIN</title>
+  <title>SUN RISE Quản lý</title>
   
   
      
@@ -44,15 +44,8 @@
       </div> <!-- end login -->
 
     </div>
-    <div class="bottom">  <h3><a href="../">SUN RISE HOMEPAGE</a></h3></div>
-  <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        header("location: admin");
-
-    }
+    <div class="bottom">  <h3><a href="../">Trang chủ</a></h3></div>
   
-  
-  ?>
   
 </body>
 </html>

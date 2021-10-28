@@ -11,7 +11,7 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             <button class="btn btn-default" type="button">
-                                New Room Bookings <span class="badge">{{ count($data) }}</span>
+                                Danh sách đặt phòng mới <span class="badge">{{ count($data) }}</span>
                             </button>
                         </a>
                     </h4>
@@ -23,25 +23,25 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <div class="form-group">
-                                        <label for="">Search</label>
+                                        <label for="">Tìm kiếm</label>
                                         <input type="text">
-                                        <button type="submit">Search</button>
+                                        <button type="submit">Tìm kiếm</button>
                                     </div>
                                     <h3>Danh sách đặt phòng</h3>
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
+                                                <th>Tên khách hàng</th>
                                                 <th>Email</th>
-                                                <th>Card number</th>
-                                                <th>Address</th>
-                                                <th>Room</th>
-                                                <th>Amount of people</th>
-                                                <th>Service</th>
-                                                <th>Check In</th>
-                                                <th>Check Out</th>
-                                                <th>Phone number</th>
-                                                <th>More</th>
+                                                <th>Thẻ</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Phòng</th>
+                                                <th>Số người</th>
+                                                <th>Dịch vụ</th>
+                                                <th>Ngày vào</th>
+                                                <th>Ngày ra</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Tính năng</th>
 
                                             </tr>
                                         </thead>
@@ -78,7 +78,7 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
                             <button class="btn btn-primary" type="button">
-                                Booked room <span class="bookedr"></span>
+                                Danh sách khách ở: <span  class="badge bookedr"></span>
                             </button>
 
                         </a>
@@ -87,25 +87,25 @@
                 <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label for="">Search</label>
+                            <label for="">Tìm kiếm</label>
                             <input type="text" name="" id="" aria-describedby="helpId" placeholder="">
                         </div>
-                        <h3>Danh sách đã đặt phòng</h3>
+                        <h3>Danh sách đã ở phòng</h3>
 
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Tên khách hàng</th>
                                     <th>Email</th>
-                                    <th>Card number</th>
-                                    <th>Address</th>
-                                    <th>Room</th>
-                                    <th>Amount of people</th>
-                                    <th>Service</th>
-                                    <th>Check In</th>
-                                    <th>Check Out</th>
-                                    <th>Phone number</th>
-                                    <th>More</th>
+                                    <th>Thẻ</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phòng</th>
+                                    <th>Số người</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Ngày vào</th>
+                                    <th>Ngày ra</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Tính năng</th>
 
                                 </tr>
                             </thead>
@@ -128,7 +128,7 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
                             <button class="btn btn-primary" type="button">
-                                Chart API <span class="badge"></span>
+                               Biểu đồ số lượng khách <span class="badge"></span>
                             </button>
                         </a>
                     </h4>
@@ -189,7 +189,7 @@
                         // click selected
                         var id,idroom,numroom, cin, cout, moneyservice = 0;
                         var typeroomid = "";
-                        //
+                        // lấy dữ liệu khi click vào dòng của bảng
                         $('.selected').click(function() {
                             id = $(this).data('id');
                             $(this).closest('tr').attr('id', id);
@@ -208,7 +208,7 @@
                             // title of modal
                             var title = "Xác nhận đặt phòng";
                             $('.modal-title').html(title);
-                            //
+                            // chèn các dữ liệu đc lấy vào modal toggle
                             var str =
                                 "<table class='table''><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> <input value= " +
                                 phone + ">  </td><tr>";
@@ -240,7 +240,7 @@
                             });
                             // update money of booking room
                             var moneyroom = 0;
-
+                            // lấy tiền khi thay đổi số phòng
                             $('#numroom').change(function() {
                                 var nameroom = $(this).val();
                                  if(nameroom == " ") return;
@@ -260,9 +260,8 @@
                                     }
                                 });
                             });
-
-                            // update  element
-
+                           
+                        }); // update  element cập nhật vào csdl
                             $('#update').click(function() {
                                 console.log(id);
                                 var idroom = $('#numroom').val();
@@ -270,20 +269,24 @@
                                     url: 'http://localhost:8080/baitaplon_nhom7/updatebook/'+id+'/'+ idroom,
                                     datatype: 'JSON',
                                     success: function(data) {
-                                        loadbookedroom();
+                                       
                                         if (data == 1) {
+                                            // jquery xóa hàng
                                             $("#" + id).remove();
+                                            id= -1;
                                             alert('Cập nhật thành công');
-                                            getnumcuswent();
+                                            loadbookedroom();
                                         } else {
                                             alert('Vui lòng nhập đầy đủ');
-                                        }
+                                        } 
                                     }
                                 });
                             })
-                        });
+
+
                     });
-  //
+  //    hàm load lại đặt phòng đã đc cập nhật số phòng
+                           
                     function loadbookedroom() {
                         console.log("ready!");
                         $.ajax({
@@ -327,7 +330,7 @@
                     }
 //  chart js
 var objectdata = [1,5];          
-
+// lấy số người đến và bùng
 function getnumcuswent(){
     $.ajax({
         url: 'http://localhost:8080/baitaplon_nhom7/getnumcuswent/2021',

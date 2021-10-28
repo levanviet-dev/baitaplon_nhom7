@@ -11,7 +11,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                         <button class="btn btn-default" type="button">
-                            Customer <span class="badge"></span>
+                            Khách hàng <span class="badge"></span>
                         </button>
                     </a>
                 </h4>
@@ -23,20 +23,20 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                <div class="form-group">
-                                 <label for="">Search</label>
+                                 <label for="">Tìm kiếm</label>
                                  <input type="text">
-                                 <button type="submit">Search</button>
+                                 <button type="submit">Tìm kiếm</button>
                                </div>
                                <table class="table">
                                 <thead>
                                     <tr>
-                                                <th>Name</th> 
-                                                <th>Phone number</th> 
+                                                <th>Tên khách hàng</th> 
+                                                <th>Số điện thoại</th> 
                                                 <th>Email</th>
-                                                <th>Address</th>
-                                                <th>Card type</th>
-                                                <th>Nums card</th>
-                                                <th>More</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Thẻ</th>
+                                                <th>Số thẻ</th>
+                                                <th>Tính năng</th>
 
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                             echo "<tr><td>$c->TenKhachHang</td><td>$c->SoDienThoai</td>
                                                 <td>$c->Email</td><td>$c->DiaChi</td>
                                                 <td>$c->TenLoai</td><td>$c->SoThe</td>
-                                                <td><button>Delete</button></td>";
+                                                <td><button>Xóa</button></td>";
                                         }
                                         
                                         
@@ -57,7 +57,7 @@
 
                                 </tbody>
                             </table>
-                            <a href="#" class="btn btn-primary">More Action</a>
+                            <a href="#" class="btn btn-primary">Tính năng</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
                             <button class="btn btn-primary" type="button">
-                                Chart customer <span class="bookedr"></span>
+                               Biểu đồ khách hàng <span class="bookedr"></span>
                             </button>
 
                         </a>

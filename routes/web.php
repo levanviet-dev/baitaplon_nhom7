@@ -30,9 +30,9 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/roombooking','Admin\AdminController@roombooking');
     Route::get('/payment','Admin\AdminController@payment'); 
     Route::get('/customer','Admin\AdminController@customer');
-
-
     Route::get('/test','Admin\AdminController@test');
+
+    Route::post('/createroom','PhongController@create');
 });
 // route get data by api
 //Admin booking room
@@ -61,3 +61,5 @@ Route::get('/getmoneybyIDHD/{id}','HoaDonController@getmoneybyIDHD');
 // update bill when customer pay money for the my hothel
 Route::get('/updatebillpayed/{id}/{loai}','HoaDonController@updatebillpayed');
 
+// routter loai phong
+Route::get('/gettyperoom','LoaiPhongController@gettyperoom');

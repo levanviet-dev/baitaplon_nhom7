@@ -16,7 +16,7 @@ class AdminController extends Controller
   public function dashboard(){
      $data = BookingModel::getbooking();
     // dd($data);
-    return view('view_admin.dashboard',compact('data'));
+    return view('view_admin.dashboard',['data'=>$data]);
   }
 
   // admin list booked of dashboard

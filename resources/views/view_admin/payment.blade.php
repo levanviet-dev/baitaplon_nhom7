@@ -11,7 +11,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                         <button class="btn btn-default" type="button">
-                            Payment <span class="badge"></span>
+                            Hóa đơn đang sử dụng <span class="badge"></span>
                         </button>
                     </a>
                 </h4>
@@ -23,21 +23,22 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                <div class="form-group">
-                                 <label for="">Search</label>
+                                 <label for="">Tìm kiếm</label>
                                  <input type="text">
-                                 <button type="submit">Search</button>
+                                 <button type="submit">Tìm kiếm</button>
                                </div>
+                               <h3>Hóa đơn hiện tại</h3>
                                <table class="table">
                                 <thead>
                                     <tr>
-                                                <th>Name</th>
-                                                <th>Address</th>
-                                                <th>Room </th>
-                                                <th>Check In</th>
-                                                <th>Check Out</th>
-                                                <th>Phone number</th>
-                                                <th>Total price</th>
-                                                <th>More</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Phòng </th>
+                                                <th>Ngày vào</th>
+                                                <th>Ngày ra</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Tính năng</th>
 
                                     </tr>
                                 </thead>
@@ -49,18 +50,12 @@
                                       <td data-id='$p->TenDichVu'>$p->SoPhong</td><td>$p->CheckIn</td>
                                       <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
                                       <td>$p->TongTien</td>
-                                      <td><button class ='payment' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
+                                      <td><button class ='payment' data-toggle = 'modal' data-target = '#myModal'>Thanh toán</button></td></tr>";
                                   }
-                                  
-                                  
-                                  
-                                  
                                   ?>
-                                   
-
                                 </tbody>
                             </table>
-                            <a href="#" class="btn btn-primary">More Action</a>
+                           {{-- <a href="#" class="btn btn-primary">More Action</a> --}}
                             </div>
                         </div>
                     </div>
@@ -74,7 +69,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">
                         <button class="btn btn-primary" type="button">
-                            Payed <span class="badgeroom"></span>
+                            Hóa đơn đã thanh toán <span class="badgeroom"></span>
                         </button>
 
                     </a>
@@ -87,19 +82,20 @@
                     <input type="text"
                       name="" id="" aria-describedby="helpId" placeholder="">
                     </div>
-                    <h3>Danh sách phòng trống</h3>
+                    <h3>Hóa đơn đã thanh toán</h3>
 
                     <table class="table">
                         <thead>
                           <tr>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Room </th>
-                            <th>Check In</th>
-                            <th>Check Out</th>
-                            <th>Phone number</th>
-                            <th>Total price</th>
-                            <th>More</th>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Phòng </th>
+                            <th>Ngày vào</th>
+                            <th>Ngày ra</th>
+                            <th>Số điện thoại</th>
+                            <th>Tổng tiền</th>
+                            <th>Thông báo</th>
+                            <th>Tính năng</th>
                           </tr>
                         </thead>
                         <tbody id="rooms">
@@ -109,8 +105,8 @@
                             echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
                               <td>$p->SoPhong</td><td>$p->CheckIn</td>
                               <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
-                              <td>$p->TongTien</td>
-                              <td><button class ='payed' data-toggle = 'modal' data-target = '#myModal'>Pay</button></td></tr>";
+                              <td>$p->TongTien</td><td>$p->GhiChu</td>
+                              <td><button class ='payed' data-toggle = 'modal' data-target = '#myModal'>In</button></td></tr>";
                           }
                           
                           
@@ -132,7 +128,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
                         <button class="btn btn-primary" type="button">
-                            Chart API <span class="badge"></span>
+                            Biểu đồ doanh thu <span class="badge"></span>
                         </button>
                     </a>
                 </h4>
@@ -174,8 +170,8 @@
           </div>
           <div class="modal-footer">
             <button id="cuspay" type="button" class="btn btn-default"
-            data-dismiss="modal">pay</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            data-dismiss="modal">Thanh toán</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
           </div>
         </div>
         
@@ -259,18 +255,18 @@ $('#cuspay').click(function(){
 })
 //
 
-const labels = ['January',
-    'Febuary',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',];
+const labels = ['Tháng 1',
+    'Tháng 2',
+    'Tháng 3',
+    'Tháng 4',
+    'Tháng 5',
+    'Tháng 6',
+    'Tháng 7',
+    'Tháng 8',
+    'Tháng 9',
+    'Tháng 10',
+    'Tháng 11',
+    'Tháng 12',];
 const data = {
   labels: labels,
   datasets: [{
