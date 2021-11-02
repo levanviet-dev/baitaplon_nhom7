@@ -66,7 +66,7 @@
                         <a  href="http://localhost:8080/baitaplon_nhom7/admin"><i class="fa fa-dashboard"></i> Trang đặt phòng</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-desktop"></i> Thư mới</a>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/adcontact"><i class="fa fa-desktop"></i> Liên hệ</a>
                     </li>
                     <li>
                         <a href="http://localhost:8080/baitaplon_nhom7/admin/roombooking"><i class="fa fa-qrcode"></i> Phòng</a>
@@ -93,8 +93,6 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
-
-
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
@@ -103,7 +101,6 @@
                     </div>
                 </div>
                 <!-- /. ROW  -->
-               
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
@@ -117,19 +114,11 @@
                     </div>
                 </div>
             </div>
-
-
             <!-- DEOMO-->
              </div>
         </div>
-
         <!--DEMO END-->
-
-
-
-
         <!-- /. ROW  -->
-
     </div>
     <!-- /. PAGE INNER  -->
     </div>

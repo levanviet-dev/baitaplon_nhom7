@@ -74,7 +74,7 @@ class BookingModel extends Model
     // get numbers of customer went to my hotel
     public static function getNumCusWentto($year){
       $allnum = DB::table('booking')->select('*')->where(DB::raw('YEAR(CheckOut)'),$year)->count();
-      $dontwent = DB::table('booking')->select('*')->where(DB::raw('YEAR(CheckOut)'),$year)->where('TrangThai',FALSE)->count();
+      $dontwent = DB::table('booking')->select('*')->where(DB::raw('YEAR(CheckOut)'),$year)->where('TrangThai',false)->count();
       $arr = array();
       array_push($arr,$dontwent);
       array_push($arr,($allnum-$dontwent));

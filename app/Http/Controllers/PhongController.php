@@ -65,4 +65,36 @@ class PhongController extends Controller
       return header("Refresh: 1;http://localhost:8080/baitaplon_nhom7/admin/roombooking");
     }
 
+    //update room
+    public function update(Request $request){
+      $ID = $request->ID;
+      $ID_LoaiPhong = $request->ID_LoaiPhong;
+      $SoPhong = $request->SoPhong;
+      $Anh = $request->Anh;
+      $SoGiuong = $request->SoGiuong;
+      $SoNguoi = $request->SoNguoi;
+      $Gia = $request->GiaTien;
+      // validate data input
+      if($SoPhong == ''||$Anh =='') {echo "<script> alert('Vui lòng nhập đầy đủ') </script>";
+      return header("Refresh: 1;http://localhost:8080/baitaplon_nhom7/admin/roombooking");}
+      // validate data in csdl
+ 
+      // $validate = DB::table('Phong')->where('ID_LoaiPhong',$ID_LoaiPhong)->where('SoPhong',$SoPhong)->first();
+      // if($validate){ echo "<script> alert('Vui lòng nhập lại số phòng') </script>";
+      // return header("Refresh: 1;http://localhost:8080/baitaplon_nhom7/admin/roombooking"); 
+      // }
+      $data = PhongModel::updateroom($ID,$ID_LoaiPhong,$SoPhong,$Anh,$SoGiuong,$SoNguoi,$Gia);
+       echo "<script> alert('Tạo phòng thành công') </script>";
+       return header("Refresh: 0.2;http://localhost:8080/baitaplon_nhom7/admin/roombooking");
+     
+    }
+    
+    public function delete($ID){
+       PhongModel::where('ID',$ID)->delete();
+      
+    }
+
+
+
+
 }

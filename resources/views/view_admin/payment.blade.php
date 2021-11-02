@@ -253,8 +253,16 @@ $('#cuspay').click(function(){
 
 
 })
-//
+// tính doanh thu trong năm
+chartrevenue();
 
+    });
+function chartrevenue(){
+$.ajax({
+ url: 'http://localhost:8080/baitaplon_nhom7/admin/getrevenue',
+ datatype: 'JSON',
+ success: function(datas){
+ console.log(datas);
 const labels = ['Tháng 1',
     'Tháng 2',
     'Tháng 3',
@@ -271,7 +279,7 @@ const data = {
   labels: labels,
   datasets: [{
     label: 'Doanh thu (VND)',
-    data: [65, 59, 80, 81, 56, 55, 40,8,7,9,5,10],
+    data: JSON.parse(datas),
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
       'rgba(255, 159, 64, 0.2)',
@@ -310,7 +318,14 @@ var myChart = new Chart(
   );
 
 
-    });
+ }
+
+
+});
+
+
+
+}
  </script>
 
 

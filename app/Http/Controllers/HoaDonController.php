@@ -28,4 +28,12 @@ class HoaDonController extends Controller
        HoaDonModel::updatebillpay($ID_HoaDon,$Totalprice,$hinhthuc);
        return 1;
     }
+
+    // lay tong tien theo thang
+   public function getrevenue(){
+    $data = HoaDonModel::getrevenue();
+    return json_encode($data);
+   }
+
+
 }

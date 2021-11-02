@@ -21,6 +21,8 @@ Route::get('/', function () {
 // router customer 
 Route::get('/booking','BookingController@index');
 Route::post('/create','BookingController@create');
+// create contact
+Route::post('/contact','LienHeController@create');
 // admin router
 Route::group(['prefix'=>'/admin'], function () {
     Route::get('/', 'Admin\AdminController@dashboard');
@@ -30,9 +32,14 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/roombooking','Admin\AdminController@roombooking');
     Route::get('/payment','Admin\AdminController@payment'); 
     Route::get('/customer','Admin\AdminController@customer');
+    Route::get('/adcontact','Admin\AdminController@adcontact');
     Route::get('/test','Admin\AdminController@test');
-
+    // xu li ben phong 
     Route::post('/createroom','PhongController@create');
+    Route::put('/updateroom','PhongController@update');
+    Route::get('/deleteroom/{id}','PhongController@delete');
+    // xu ly ben doanh thu lay doanh thu
+    Route::get('/getrevenue','HoadonController@getrevenue');
 });
 // route get data by api
 //Admin booking room

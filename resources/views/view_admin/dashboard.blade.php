@@ -332,18 +332,20 @@
 var objectdata = [1,5];          
 // lấy số người đến và bùng
 function getnumcuswent(){
+    // tao ham get date
     $.ajax({
         url: 'http://localhost:8080/baitaplon_nhom7/getnumcuswent/2021',
         datatype: 'JSON',
         success: function(datas) {  
+            console.log('so khach '+datas);
   const data = {
   labels: [
-    'khách đến',
-    'Khách chưa đến',
+    'khách chưa đến',
+    'Khách đã ở',
   ],
   datasets: [{
     label: 'Số khách hàng đến khách sạn sau đặt phòng',
-    data: datas,
+    data: JSON.parse(datas),
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',

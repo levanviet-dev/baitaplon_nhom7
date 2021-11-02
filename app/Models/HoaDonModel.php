@@ -97,4 +97,21 @@ class HoaDonModel extends Model
          DB::update("update hoadon set TrangThai = '1', TongTien = '$Totalprice',
          GhiChu = '$hinhthucthanhtoan' where ID = '$ID_HoaDon'");
         }
+        
+        public static function getrevenue(){
+          $data = array();
+
+        for($i = 1 ; $i<=12;$i++){
+            $tien = DB::selectOne('SELECT CASE WHEN SUM(thang.tongtien) 
+            is null THEN 0 else SUM(thang.tongtien) end "Tien" 
+            FROM(SELECT TongTien FROM hoadon WHERE Month(NgayTao) = '.$i.') as thang');  
+           array_push($data,$tien->Tien);
+        }
+        
+        //print_r($data);
+         return $data;
+
+        }
+
+
 }

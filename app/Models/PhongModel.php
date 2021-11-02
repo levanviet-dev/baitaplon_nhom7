@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -12,8 +13,11 @@ class PhongModel extends Model
     use HasFactory;
     // function get data room 
     public static function getroom(){
-        $data = DB::select("select  phong.ID, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
+        $data = DB::select("select  phong.ID,phong.Anh, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
         where phong.ID_LoaiPhong = loaiphong.ID and TrangThai = '0'");
+        // $data = array_map(function($item){
+        //     return (array) $item;
+        // },$data);
         return $data;
     }
     // function get data room booked
@@ -76,5 +80,25 @@ class PhongModel extends Model
 
 
     }
+
+    // edit room
+    public static function updateroom($ID,$ID_LoaiPhong,$SoPhong,$Anh,$SoGiuong,$SoNguoi,$Gia){
+      
+         DB::table('phong')->where('ID',$ID)->update(array(
+            'ID_LoaiPhong' => $ID_LoaiPhong,
+            'SoPhong' => $SoPhong,
+            'Anh' => $Anh,
+            'TrangThai' => '0',
+            'KiemTra'=> 'Bình thường',
+            'SoGiuong' => $SoGiuong,
+            'SoNguoi'=> $SoNguoi,
+            'GiaTien' => $Gia
+         ));
+    
+    }
+
+
+
+    //todo
 
 }

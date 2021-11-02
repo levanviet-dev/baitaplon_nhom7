@@ -10,6 +10,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use  Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Rfc4122\NilUuid;
 use App\Models\KhachHangModel;
+use App\Models\PhongModel;
+
 class AdminController extends Controller
 {
     // admin dashboard
@@ -28,8 +30,9 @@ class AdminController extends Controller
   // admin booking room the method of menu
   public function roombooking(){
   // user PhongController get data 
-   return view('view_admin.roombooking');
-
+   $roomfree = PhongModel::getroom();
+   $roombooked = PhongModel::getroombooked();
+   return view('view_admin.roombooking',compact('roombooked','roomfree'));
   }
   //payment
   public function payment(){
@@ -38,14 +41,17 @@ class AdminController extends Controller
    //dd($data)
     return view('view_admin.payment',compact('data','dathanhtoan'));
   }
-
   // customer
-
   public function customer(){
     $data = KhachHangModel::getall();
     return view('view_admin.customer',compact('data'));
   }
-  
+  // lien he
+  public function adcontact(){
+    $data = DB::table('lienhe')->get();
+    //dd($data);
+    return view('view_admin.adcontact',compact('data')) ; 
+  }
 
 
 }
