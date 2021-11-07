@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="page-header">
-                    Danh sách <small>liên hệ </small>
+                    Quản lý <small>tài khoản </small>
                 </h1>
             </div>
         </div>
@@ -19,12 +19,7 @@
 
                     </div>
                     {{-- write content --}}
-                
-        
-
-
-
-
+       
 <div class="panel-body">
     <div class="panel-group" id="accordion">
 
@@ -33,7 +28,7 @@
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                         <button class="btn btn-default" type="button">
-                            Liên hệ mới <span class="badge"></span>
+                            Danh sách tài khoản <span class="badge"></span>
                         </button>
                     </a>
                 </h4>
@@ -52,26 +47,28 @@
                                <table class="table">
                                 <thead>
                                     <tr>
-                                                <th>Tên khách hàng</th> 
-                                                <th>Số điện thoại</th> 
+                                                <th>Tên tài khoản</th> 
+                                                <th>Họ và tên</th> 
                                                 <th>Email</th>
-                                                <th>Trạng thái</th>
+                                                <th>Chức vụ</th>
                                                 <th>Tính năng</th>
 
                                     </tr>
                                 </thead>
                                 <tbody id="customer">
-                                    <?php
-                                        foreach ($data as $c) {                                            
-                                            # code...
-                                            echo "<tr><td>$c->TenKH</td><td>$c->SoDienThoai</td>
-                                                <td>$c->Email</td><td>$c->TrangThai</td>
-                                                <td><button class='btn btn-primary sentemail' data-toggle = 'modal' data-target = '#myModal'>Trả lời</button></td>";
-                                        }
-                                        ?>
+                                   <?php
+                                    foreach ($data as $us) {
+                                        # code...
+                                      echo "<tr><td>$us->TaiKhoan</td><td>$us->HoTen</td>
+                                        <td>$us->Email</td><td>$us->GhiChu</td>
+                                        <td><button class='btn btn-primary' data-toggle = 'modal' data-target = '#myModal'>Sửa</button>
+                                        <button class='btn btn-primary' >Xóa</button></td></tr>";
+                                    }
+                                    
+                                    ?>
                                 </tbody>
                             </table>
-                            {{-- <a href="#" class="btn btn-primary">Tính năng</a> --}}
+                            <a href="#" class="btn btn-primary" data-toggle = 'modal' data-target = '#myModal'>Tạo mới</a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +92,7 @@
                     <div class="panel-body">
                         <h3>Biểu đồ số khách hàng trong năm 
                             <?php
-                                echo date('Y');
+                                // echo date('Y');
                                 ?>
                         </h3>
                     </div>
@@ -117,16 +114,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Trả lời </h4>
+            <h4 class="modal-title">Tài khoản </h4>
           </div>
           <div class="modal-body">
-              <table class="table"><tr>
-           <td><label >Tiêu đề :</label></td><td> <input type="text" placeholder="Nhập tiêu đề thư"></td> </tr>
-           <tr><td> <label >Nội dung :</label></td><td> <textarea id="review" name="review" rows="6" cols="50">
-            </textarea> </td></tr></table> 
-        </div>
+           <table class="table">
+            <tr><td><label >Họ tên</label></td><td><input type="text" required></td></tr>
+            <tr><td><label >Email</label></td><td><input type="text" required></td></tr>
+            <tr><td><label >Chức vụ</label></td><td><input type="text" required></td></tr>
+
+           </table>
+          </div>
           <div class="modal-footer"> 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Gửi</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cập nhật</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
           </div>
         </div>
@@ -146,18 +145,5 @@
 </div>   
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>$(document).ready(function(){
-  $('.sentemail').click(function(){
-     var email = $(this).closest('tr').find('td:nth-child(3)').text();
-  
-    $('.modal-title').html('Trả lời '+email);
-
-  })
-
-
-
-})</script>
-
-
 
     @endsection

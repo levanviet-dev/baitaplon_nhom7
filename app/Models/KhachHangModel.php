@@ -58,11 +58,22 @@ class KhachHangModel extends Model
     }
   
   public static function getall(){
-    $data = DB::select("select khachhang.ID,TenKhachHang,SoDienThoai,Email,SoThe,DiaChi,
-    loaithe.TenLoai from khachhang,loaithe where khachhang.ID_LoaiThe = loaithe.ID");
+    // $data = DB::select("select khachhang.ID,TenKhachHang,SoDienThoai,Email,SoThe,DiaChi,
+    // loaithe.TenLoai from khachhang,loaithe where khachhang.ID_LoaiThe = loaithe.ID");
 
+     $data = DB::table('KhachHang')->join('loaithe','khachhang.ID_LoaiThe',"=",'loaithe.ID')
+     ->select('khachhang.ID','TenKhachHang','SoDienThoai','Email','SoThe','DiaChi',
+      'loaithe.TenLoai')->paginate(5);
    return $data;
-
+  }
+  // Khách hàng tiềm năng tiêu chí vào ở nhiều lần
+  public static function getvisitorfq(){
+        $data = DB::select("SELECT TenKH,SoDienThoai,DiaChi,Email, 
+        COUNT(SoDienThoai) as SoLan from booking WHERE TrangThai = 2 
+        AND YEAR(CheckOut) = YEAR(CURRENT_DATE()) 
+        GROUP BY TenKH,SoDienThoai,DiaChi,Email 
+        HAVING COUNT(SoDienThoai) >= 3 ORDER BY COUNT(SoDienThoai) DESC");  
+        return $data;
   }
 
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BookingController;
+use App\Models\LoaiPhongModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+   $data = LoaiPhongModel::getalltyperoom();
+    return view('home',['data'=>$data]);
 });
 // router customer 
 Route::get('/booking','BookingController@index');
@@ -40,6 +42,8 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/deleteroom/{id}','PhongController@delete');
     // xu ly ben doanh thu lay doanh thu
     Route::get('/getrevenue','HoadonController@getrevenue');
+    // admin user profile
+    Route::get('/profile','Admin\AdminController@account');
 });
 // route get data by api
 //Admin booking room
@@ -66,7 +70,8 @@ Route::get('/customerpayment/{id}','BookingController@customerpayment');
 // get money of bill by id bill
 Route::get('/getmoneybyIDHD/{id}','HoaDonController@getmoneybyIDHD');
 // update bill when customer pay money for the my hothel
-Route::get('/updatebillpayed/{id}/{loai}','HoaDonController@updatebillpayed');
-
+Route::get('/updatebillpayed/{id}/{loai}/{discount}','HoaDonController@updatebillpayed');
 // routter loai phong
 Route::get('/gettyperoom','LoaiPhongController@gettyperoom');
+//
+Route::get('/abcd','Admin\AdminController@getgetget');

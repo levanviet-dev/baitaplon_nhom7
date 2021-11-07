@@ -200,7 +200,7 @@
                                 <p>Nhập bên dưới mã này <?php $Random_code = rand();
                                 echo $Random_code; ?> </p><br />
                                 <p>Nhập dãy mã ngẫu nhiên <br /></p>
-                                <input type="text" name="code1" title="random code" />
+                                <input type="text" name="code1" title="random code" required     />
                                 <input type="hidden" name="code" value="<?php echo $Random_code; ?>" />
                                 <input type="submit" name="Gửi" class="btn btn-primary">
                                 </form>

@@ -20,7 +20,7 @@ class BookingModel extends Model
     where Booking.ID_LoaiPhong = LoaiPhong.ID 
     and Booking.ID_DichVu = DichVu.ID 
     and loaithe.ID = booking.ID_LoaiThe 
-    and booking.TrangThai = "0" order by ThoiGian desc');
+    and booking.TrangThai = "0" order by ThoiGian');
      return $datas;
     }
     // function get list booked room

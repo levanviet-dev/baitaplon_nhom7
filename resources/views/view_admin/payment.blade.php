@@ -1,6 +1,23 @@
 @extends('layouts.ladmin')
 
 @section('main_admin')
+<div id="page-wrapper">
+  <div id="page-inner">
+      <div class="row">
+          <div class="col-md-12">
+              <h1 class="page-header">
+                 Quản lý <small>thanh toán </small>
+              </h1>
+          </div>
+      </div>
+      <!-- /. ROW  -->
+      <div class="row">
+          <div class="col-md-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+
+                  </div>
+                  {{-- write content --}}
     
 
 <div class="panel-body">
@@ -37,7 +54,7 @@
                                                 <th>Ngày vào</th>
                                                 <th>Ngày ra</th>
                                                 <th>Số điện thoại</th>
-                                                <th>Tổng tiền</th>
+                                                <th>Tổng tiền(VNĐ)</th>
                                                 <th>Tính năng</th>
 
                                     </tr>
@@ -49,8 +66,8 @@
                                     echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
                                       <td data-id='$p->TenDichVu'>$p->SoPhong</td><td>$p->CheckIn</td>
                                       <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
-                                      <td>$p->TongTien</td>
-                                      <td><button class ='payment' data-toggle = 'modal' data-target = '#myModal'>Thanh toán</button></td></tr>";
+                                      <td>".number_format($p->TongTien)."</td>
+                                      <td><button class ='payment btn btn-primary' data-toggle = 'modal' data-target = '#myModal'>Thanh toán</button></td></tr>";
                                   }
                                   ?>
                                 </tbody>
@@ -93,7 +110,7 @@
                             <th>Ngày vào</th>
                             <th>Ngày ra</th>
                             <th>Số điện thoại</th>
-                            <th>Tổng tiền</th>
+                            <th>Tổng tiền(VNĐ)</th>
                             <th>Thông báo</th>
                             <th>Tính năng</th>
                           </tr>
@@ -105,13 +122,10 @@
                             echo "<tr><td data-id ='$p->ID'>$p->TenKH</td><td>$p->DiaChi</td>
                               <td>$p->SoPhong</td><td>$p->CheckIn</td>
                               <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
-                              <td>$p->TongTien</td><td>$p->GhiChu</td>
-                              <td><button class ='payed' data-toggle = 'modal' data-target = '#myModal'>In</button></td></tr>";
+                              <td> ".number_format($p->TongTien)." </td><td>$p->GhiChu</td>
+                              <td><button class ='payed btn btn-primary' data-toggle = 'modal' data-target = '#myModal'>In</button></td></tr>";
                           }
-                          
-                          
-                          
-                          
+                           
                           ?>
                         </tbody>
                         
@@ -150,8 +164,6 @@
         </div>    
         {{-- end --}}
 
-
-
 <div class="container">
     <!-- Trigger the modal with a button -->
    
@@ -178,8 +190,15 @@
       </div>
     </div>
     
-
-
+{{-- end content --}}
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- DEOMO-->
+</div>
+</div>   
 
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -191,7 +210,7 @@ var idHoaDon = '';
 $('.payment').click(function(){
   var name = $(this).closest('tr').find('td:first').text();
   idHoaDon = $(this).closest('tr').find('td:first').data('id');
-$('.modal-title').html('Thanh toán hóa đơn: '+name);
+ $('.modal-title').html('Thanh toán hóa đơn: '+name);
  var id =  $(this).closest('tr').find('td:first').data('id');
  var diachi = $(this).closest('tr').find('td:nth-child(2)').text();
  var sophong = $(this).closest('tr').find('td:nth-child(3)').text();
@@ -210,49 +229,39 @@ $.ajax({
        console.log(pr[0]['TongTien']); 
        totalprice = pr[0]['TongTien'];
 
-var str = "<table class='table' style='margin : 0 auto;'><tr><td>Địa chỉ: </td><td>"+ diachi +"</td></tr>";
+ var str = "<table class='table' style='margin : 0 auto;'><tr><td>Địa chỉ: </td><td>"+ diachi +"</td></tr>";
     str += "<tr><td>Số phòng: </td><td left='20px'>"+ sophong +"</td></tr>";
     str += "<tr><td>Ngày vào: </td><td>"+ checkin +"</td></tr>";
     str += "<tr><td>Ngày ra: </td><td>"+ checkout +"</td></tr>";
     str += "<tr><td>Dịch vụ: </td><td>"+ dichvu +"</td></tr>";
     str += "<tr><td>Loại hình thanh toán: </td><td><select id='cars'><option data-id='0'>Tiền mặt</option>"+
   "<option data-id='1'>Dùng thẻ</option></select></td></tr>";
-    str += "<tr><td>Tổng tiền: </td><td>"+ totalprice +"</td></tr>"; 
+    str+= "<tr><td>Giảm giá (%)</td><td><input type='number' id='giamgia' onchange='giamgia(value,"+totalprice+")' value = 0 min = '0' max = '100'><span>(Giá từ 0-100)</span></td>"
+    str += "<tr><td>Tổng tiền: </td><td id='tiencuoi'>"+ totalprice.toLocaleString('en') +"</td></tr>"; 
 
-$('.modal-body').html(str);
-// var updatepay = '<a  class="btn btn-default payings"  data-dismiss="modal">Pay</a>';
-// updatepay += '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-// $('.modal-footer').html(updatepay);
-
+    $('.modal-body').html(str);
   }
-});
+    });
 
 });
-
 //
 $('#cuspay').click(function(){
   console.log(idHoaDon);
   var cachthanhtoan = $('#cars option:selected').data('id');
-  console.log(cachthanhtoan);
-
+ // console.log(cachthanhtoan);
+  var giamgia = $('#giamgia').val();
+ console.log(giamgia);
   $.ajax({
-  url: 'http://localhost:8080/baitaplon_nhom7/updatebillpayed/'+idHoaDon+'/'+cachthanhtoan,
+  url: 'http://localhost:8080/baitaplon_nhom7/updatebillpayed/'+idHoaDon+'/'+cachthanhtoan+'/'+giamgia,
   datatype: 'JSON',
   success: function(data){
     if(data == 1){
         alert('Cảm ơn bạn đã thanh toán!');
         window.open(location.reload(true));
     }
-
-
-
   }
   });
-
-
-
-
-})
+});
 // tính doanh thu trong năm
 chartrevenue();
 
@@ -325,6 +334,13 @@ var myChart = new Chart(
 
 
 
+}
+
+//
+function giamgia(val,price){
+ var finalprice = price - val/100*price;
+  //console.log(finalprice);
+  $('#tiencuoi').html(finalprice);
 }
  </script>
 

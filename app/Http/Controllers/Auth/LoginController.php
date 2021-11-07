@@ -10,7 +10,8 @@ class LoginController extends Controller
 {
     //
     public function login(){
-        session_unset();
+        session_start();
+        //session_unset();
         return view('view_admin.login');
     }
     public function userLogin(Request $request){
@@ -22,21 +23,18 @@ class LoginController extends Controller
 		$password = strip_tags($password);
 		$password = addslashes($password);
        // 
-      $user = DB::select("Select * from taikhoan where TaiKhoan = '$username' 
-      and MatKhau = '$password'");
+      $user = DB::table('TaiKhoan')->where('TaiKhoan',$username)->where('MatKhau',$password)->get();
       // handel connect to database and login;
       if(count($user)>0){
         session_start();
-        $_SESSION["user"] = 'aka';
+        $_SESSION["user"] = $user[0]->HoTen;
         //dd($user);
          return redirect('admin');
       }
       else{
           echo "<script>alert('ten tk mk khong chinh xac')</script>";
           return view('view_admin.login');
-
       }
-
 
     }
     public function logout(){

@@ -1,7 +1,24 @@
 @extends('layouts.ladmin')
 
 @section('main_admin')
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                   Quản lý <small>phòng ban </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
 
+                    </div>
+                    {{-- write content --}}
+                
 
     <div class="panel-body">
         <div class="panel-group" id="accordion">
@@ -37,8 +54,6 @@
                                                 <th>Số phòng</th>
                                                 <th>Khách hàng</th>
                                                 {{-- <th>Tính năng</th> --}}
-
-
                                             </tr>
                                         </thead>
                                         <tbody id="booked">
@@ -69,7 +84,6 @@
                             <button class="btn btn-primary" type="button">
                                 Phòng <span class="badgeroom"><?php echo count($roomfree) ?></span>
                             </button>
-
                         </a>
                     </h4>
                 </div>
@@ -80,7 +94,6 @@
                             <input type="text" name="" id="" aria-describedby="helpId" placeholder="">
                         </div>
                         <h3>Danh sách phòng trống</h3>
-
                         <table class="table">
                             <thead>
                                 <tr>
@@ -102,19 +115,16 @@
                                   <tr><td>$r->TenLoai</td><td data-id='$r->ID'>$r->SoPhong</td>
                                   <td>$r->SoNguoi</td><td>$r->SoGiuong</td>
                                   <td>$r->KiemTra</td><td><img src='$r->Anh' style='width:10em;height:8em;'></td>
-                                  <td><button class='btn btn-info btn-lg edit' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>
-                                    <span class='glyphicon glyphicon-wrench'></span></button>
-                                  <button class='btn btn-info btn-lg delete'><span  class='glyphicon glyphicon-trash'></span></button> </td></tr>";
+                                  <td><button class='btn btn-primary edit' data-toggle='modal' data-target='#myModal'>
+                                    Sửa</button>
+                                  <button class='btn btn-primary'>Xóa</button> </td></tr>";
                               }                                          
                               ?>
                             </tbody>
-
                         </table>
                         <button id="createroom" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tạo phòng</button>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="container">
@@ -145,7 +155,16 @@
             </div>
 
             <button style="display: none;" id="togglemodal" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> modal</button>
-            
+                 
+{{-- end content --}}
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- DEOMO-->
+</div>
+</div>   
             <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
             <script>
                 // create room

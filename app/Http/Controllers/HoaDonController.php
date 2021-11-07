@@ -19,13 +19,14 @@ class HoaDonController extends Controller
        return json_encode($data);
     }
     //update bill when customer payed;
-    public function updatebillpayed($ID_HoaDon,$hinhthuc){
+    public function updatebillpayed($ID_HoaDon,$hinhthuc,$giamgia){
        $price = HoaDonModel::getmoneyHoaDon($ID_HoaDon);
        $data = json_decode(json_encode($price),true);
        $Totalprice = $data[0]['TongTien'];
+       $Totalprice = $Totalprice - $Totalprice*$giamgia/100;
        //$hinhthuc = json_decode($hinhthuc);
        //dd($Totalprice);
-       HoaDonModel::updatebillpay($ID_HoaDon,$Totalprice,$hinhthuc);
+       HoaDonModel::updatebillpay($ID_HoaDon,$Totalprice,$hinhthuc,$giamgia);
        return 1;
     }
 

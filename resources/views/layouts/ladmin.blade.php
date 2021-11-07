@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin"> Quản lý </a>
+                <a class="navbar-brand" href="admin"><?php echo $_SESSION["user"]  ?></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -44,10 +44,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Thông tin người dùng</a>
+                        <li><a href="http://localhost:8080/baitaplon_nhom7/admin/profile"><i class="fa fa-user fa-fw"></i> Thông tin người dùng</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
-                        </li>
+                        {{-- <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a> </li> --}}
+                       
                         <li class="divider"></li>
                         <li><a href="http://localhost:8080/baitaplon_nhom7/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                         </li>
@@ -91,32 +91,11 @@
          </style>
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                            Status <small>Hotel </small>
-                        </h1>
-                    </div>
-                </div>
-                <!-- /. ROW  -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-
-                            </div>
-                        @section('main_admin')   
+         <!-- section content --> 
+        @section('main_admin')   
                         @show 
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- DEOMO-->
-             </div>
-        </div>
+        <!-- END section content --> 
+
         <!--DEMO END-->
         <!-- /. ROW  -->
     </div>

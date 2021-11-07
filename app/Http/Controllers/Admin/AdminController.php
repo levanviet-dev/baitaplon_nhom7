@@ -10,7 +10,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use  Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Rfc4122\NilUuid;
 use App\Models\KhachHangModel;
+use App\Models\LoaiPhongModel;
 use App\Models\PhongModel;
+use Illuminate\Pagination\Paginator;
 
 class AdminController extends Controller
 {
@@ -44,14 +46,32 @@ class AdminController extends Controller
   // customer
   public function customer(){
     $data = KhachHangModel::getall();
-    return view('view_admin.customer',compact('data'));
+    // khách đến nhiều
+    $cusfq = KhachHangModel::getvisitorfq();
+    //dd($cusfq);
+    return view('view_admin.customer',['cusfq'=>$cusfq])->with('data', $data);;
   }
+  
+
   // lien he
   public function adcontact(){
     $data = DB::table('lienhe')->get();
     //dd($data);
     return view('view_admin.adcontact',compact('data')) ; 
   }
+ // thong tin ve danh sach tài khoản
+  public function account(){
+    $data = DB::table('taikhoan')->get();
+    return view('view_admin.account',compact('data'));
+  }
+//
+
+ public function getgetget(){
+   LoaiPhongModel::getalltyperoom();
+  
+
+ }
+
 
 
 }

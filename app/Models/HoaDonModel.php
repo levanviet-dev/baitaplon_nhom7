@@ -83,13 +83,13 @@ class HoaDonModel extends Model
             return $data;
         }
         // update bill when customer pay money
-        public static function updatebillpay($ID_HoaDon,$Totalprice,$cach){
+        public static function updatebillpay($ID_HoaDon,$Totalprice,$cach,$giamgia){
          $HoaDon = DB::table('hoadon')->where('ID',$ID_HoaDon)->first();
          $Booking = DB::table('booking')->where('ID',$HoaDon->ID_Booking)->first();
          //
          $hinhthucthanhtoan = 'Thanh toán bằng tiền mặt lúc ';
             if($cach == 1) $hinhthucthanhtoan = 'Thanh toán qua thẻ lúc ';
-            $hinhthucthanhtoan .= date('Y-m-d');
+            $hinhthucthanhtoan .= date('Y-m-d').'. Giảm giá : '.$giamgia.' %';
          //
          DB::update("Update booking set TrangThai = '2',CheckOut = CURRENT_DATE() where ID = '$HoaDon->ID_Booking'");
          DB::update("update phong set TrangThai = '0' where ID_LoaiPhong = '$Booking->ID_LoaiPhong'

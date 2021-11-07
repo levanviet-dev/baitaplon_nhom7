@@ -3,6 +3,26 @@
 @section('main_admin')
 
 
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    Đặt phòng <small>khách sạn </small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                    </div>
+                    {{-- write content --}}
+                
+
+
     <div class="panel-body">
         <div class="panel-group" id="accordion">
 
@@ -41,7 +61,7 @@
                                                 <th>Ngày vào</th>
                                                 <th>Ngày ra</th>
                                                 <th>Số điện thoại</th>
-                                                <th>Tính năng</th>
+                                                <th >Tính năng</th>
 
                                             </tr>
                                         </thead>
@@ -50,12 +70,22 @@
                                             
                                             foreach ($data as $d) {
                                                 # code...
+                                                $style = '';
+                                                $xoa =  '';
+                                                
+                                                if($d->CheckIn >= date("Y-m-d"))
+                                                   $style ="style='background-color: #CCFFCC'"; 
+                                                 else {
+                                                     # code...
+                                                     $style ="style='background-color: #FF9966'"; 
+                                                     $xoa = "<button class='btn btn-primary' data-id='$d->ID'>Xóa</button>";
+                                                 }  
                                                 echo "
-                                                    <tr><td>$d->TenKH</td><td>$d->Email</td><td>$d->LoaiThe : $d->SoThe</td>
+                                                    <tr ".$style."><td >$d->TenKH</td><td>$d->Email</td><td>$d->LoaiThe : $d->SoThe</td>
                                                     <td>$d->DiaChi</td><td data-id=".$d->SoGiuong.' data-typeroom='.$d->loaiphongID.">$d->LoaiPhong</td>
                                                     <td>$d->SoNguoi</td><td data-id=".$d->TienDV.">$d->TenDichVu</td>
                                                     <td>$d->CheckIn</td><td>$d->CheckOut</td><td data-id = ".$d->GiaTien.">$d->SoDienThoai</td>
-                                                    <td><button class=".'selected' .' data-id=' .$d->ID .">OK</button></td>";
+                                                    <td><button class='btn btn-primary selected' data-id='$d->ID'>Chọn</button>".$xoa."</td>";
                                             }
                                             ?>
                                         </tbody>
@@ -167,8 +197,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button id="update" type="button" class="btn btn-default"
-                                    data-dismiss="modal">Update</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    data-dismiss="modal">Cập nhật</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                             </div>
                         </div>
 
@@ -177,6 +207,18 @@
             </div>
         </div>
     </div>    
+
+
+{{-- end content --}}
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- DEOMO-->
+</div>
+</div>
+
                 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <script>
@@ -210,8 +252,8 @@
                             $('.modal-title').html(title);
                             // chèn các dữ liệu đc lấy vào modal toggle
                             var str =
-                                "<table class='table''><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> <input value= " +
-                                phone + ">  </td><tr>";
+                                "<table class='table''><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> " +
+                                phone +"</td><tr>";
 
                             str += "<tr> <td> <label>Tên khách hàng: </label> </td><td> " + name + " </td></tr>";
                             str += "<tr> <td> <label>Địa chỉ: </label> </td><td> " + adress + "  </td></tr>";
@@ -303,7 +345,7 @@
                                         "<td>" + s[i]['SoNguoi'] + "</td>" + "<td>" + s[i]['TenDichVu'] + "</td>" + "<td>" +
                                         s[i]['CheckIn'] + "</td>" +
                                         "<td>" + s[i]['CheckOut'] + "</td>" + "<td>" + s[i]['SoDienThoai'] + "</td>" +
-                                        "<td><button class=" + "btn btn-primary" + ">Payment</button></td>" +
+                                        "<td><button class='btn btn-primary'>Payment</button></td>" +
                                         "</tr>";
                                 }
                                 $('#bookedroom').html(str);
