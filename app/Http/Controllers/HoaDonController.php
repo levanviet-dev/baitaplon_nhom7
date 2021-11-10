@@ -6,6 +6,7 @@ use App\Models\BookingModel;
 use App\Models\HoaDonModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class HoaDonController extends Controller
 {
@@ -35,6 +36,16 @@ class HoaDonController extends Controller
     $data = HoaDonModel::getrevenue();
     return json_encode($data);
    }
-
+   //in hoa don
+   public function printHD($ID){
+      $HoaDon = HoaDonModel::where('ID','=',$ID)->first();
+      $booking = BookingModel::WHERE('ID','=',$HoaDon['ID_Booking'])->first();
+      $dichvu  = DB::table('dichvu')->where('ID','=',$booking['ID_DichVu'])->first();
+      $giaphong = DB::table('phong')->where('ID_LoaiPhong','=',$booking['ID_LoaiPhong'])
+      ->where('SoPhong','=',$booking['SoPhong'])->first();
+    //dd($data);
+        return view('view_admin/print',['HoaDon'=>$HoaDon,
+        'booking'=>$booking,'dichvu'=>$dichvu,'phong'=>$giaphong]);
+   }
 
 }

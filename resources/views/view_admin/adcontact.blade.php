@@ -64,8 +64,8 @@
                                     <?php
                                         foreach ($data as $c) {                                            
                                             # code...
-                                            echo "<tr><td>$c->TenKH</td><td>$c->SoDienThoai</td>
-                                                <td>$c->Email</td><td>$c->TrangThai</td>
+                                            echo "<tr><td id='tenkh' data-id='$c->ID'>$c->TenKH</td><td>$c->SoDienThoai</td>
+                                                <td>$c->Email</td><td>Chưa trả lời</td>
                                                 <td><button class='btn btn-primary sentemail' data-toggle = 'modal' data-target = '#myModal'>Trả lời</button></td>";
                                         }
                                         ?>
@@ -115,18 +115,24 @@
       
         <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Trả lời </h4>
-          </div>
-          <div class="modal-body">
-              <table class="table"><tr>
-           <td><label >Tiêu đề :</label></td><td> <input type="text" placeholder="Nhập tiêu đề thư"></td> </tr>
-           <tr><td> <label >Nội dung :</label></td><td> <textarea id="review" name="review" rows="6" cols="50">
-            </textarea> </td></tr></table> 
-        </div>
+            <form class="sentmail" action="sentmail" method="POST">
+                @csrf
+             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Trả lời <label ></label></h4>
+                <input type="hidden" name="email" class="nameemail">
+                <input type="hidden" name="ID" class="IDemail">
+             </div>
+             <div class="modal-body">
+              <table class="table">
+            <tr><td><label >Tên liên hệ :</label></td><td> <input id="pushname" type="text" name="name" placeholder="Tên khách hàng"></td> </tr> 
+             <tr><td><label >Tiêu đề :</label></td><td> <input type="text" name="title" placeholder="Nhập tiêu đề thư"></td> </tr>
+             <tr><td> <label >Nội dung :</label></td><td> <textarea id="review" name="content" rows="6" cols="50">
+             </textarea> </td></tr></table>
+            </form>
+            </div>
           <div class="modal-footer"> 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Gửi</button>
+            <button type="button" class="btn btn-default sent" data-dismiss="modal">Gửi</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
           </div>
         </div>
@@ -149,12 +155,19 @@
 <script>$(document).ready(function(){
   $('.sentemail').click(function(){
      var email = $(this).closest('tr').find('td:nth-child(3)').text();
-  
-    $('.modal-title').html('Trả lời '+email);
-
+     var name = $(this).closest('tr').find('td:first').text()
+     var id = $(this).closest('tr').find('td:first').data('id');
+    $('.modal-title').find('label').html(email);
+    $('#pushname').val(name);
+    $('.nameemail').val(email);
+    $('.IDemail').val(id);
   })
+  $('.sent').click(function(){
+ // alert('Gửi thành công');
+   $('.sentmail').submit();
+    //location.reload();
 
-
+ })
 
 })</script>
 

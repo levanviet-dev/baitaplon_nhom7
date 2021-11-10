@@ -13,6 +13,8 @@ use App\Models\KhachHangModel;
 use App\Models\LoaiPhongModel;
 use App\Models\PhongModel;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -55,7 +57,7 @@ class AdminController extends Controller
 
   // lien he
   public function adcontact(){
-    $data = DB::table('lienhe')->get();
+    $data = DB::table('lienhe')->where('TrangThai','=',0)->get();
     //dd($data);
     return view('view_admin.adcontact',compact('data')) ; 
   }
@@ -64,11 +66,27 @@ class AdminController extends Controller
     $data = DB::table('taikhoan')->get();
     return view('view_admin.account',compact('data'));
   }
-//
+// function sent mail for person
+  public function sentmail(Request $request){
+  //  echo  $request->email;
+  //  echo $request->name;
+  //  echo $request->title;
+  //  echo $request->content;
+      
+    // Mail::send('view_admin.email',[
+    //     'name'=> $request->name,
+    //     'content'=> $request->content,
+    //   ],function($mail) use($request){
+    //      $mail->to($request->email,$request->name);
+    //      $mail->from('hotrokhachhang3211@gmail.com');
+    //      $mail->subject($request->title);
+    //   });
+    DB::table('lienhe')->where('ID','=',$request->ID)->update([
+      'TrangThai' => 1
+    ]); 
+    return Redirect()->route('adcontact');
+     
 
- public function getgetget(){
-   LoaiPhongModel::getalltyperoom();
-  
 
  }
 

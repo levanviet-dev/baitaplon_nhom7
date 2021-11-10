@@ -13,7 +13,7 @@ use PhpParser\Node\Stmt\Global_;
 
 class BookingController extends Controller
 {   
-    //
+    // hàm lấy các giá trị trả về trang khách hàng đặt phòng
     public function index(){
         $data = BookingModel::all();
         $cardtype = DB::select('select * from LoaiThe');
@@ -22,7 +22,7 @@ class BookingController extends Controller
           return view('booking',['cardtypes'=>$cardtype,
           'roomtype'=>$roomtype,'service'=>$service]);
     }
-
+    // hàm tạo đơn đặt phòng
     public function create(Request $request){
         // create booking room for person
         $data = new BookingModel;
@@ -68,6 +68,7 @@ class BookingController extends Controller
         echo '<script> alert("Cảm ơn bạn đã sử dụng dịch vụ. Chúng tôi sẽ liên lạc bạn sớm") </script>';
         return $this->index();
     }
+    //Hàm lấy id mới
     protected function getIDs(){
         
         if(!BookingModel::orderBy('ThoiGian','DESC')->first()){
@@ -102,5 +103,11 @@ class BookingController extends Controller
        $data =  BookingModel::getNumCusWentto($year);  
        return json_encode($data);
     }
-
+    // Hàm xóa đơn đặt phòng
+    function delete(Request $request){
+      $ID = $request->id;
+      DB::table('booking')->where('ID','=',$ID)->update(['TrangThai'=> 3]);
+       header('Location: admin');
+       exit();
+    }    
 }

@@ -101,8 +101,8 @@
                                     <th>Số phòng</th>
                                     <th>Số người</th>
                                     <th>Số giường</th>
-                                    <th>Ảnh</th>
                                     <th>Trạng thái</th>
+                                    <th>Ảnh</th>
                                     <th>Tính năng</th>
 
                                 </tr>
@@ -225,10 +225,12 @@
                     $(".modal-title").html(title);
                     var idr = $(this).closest('tr').find('td:nth-child(2)').data('id');
                     var sophong = $(this).closest('tr').find('td:nth-child(2)').text();
+                    
                     var songuoi = $(this).closest('tr').find('td:nth-child(3)').text();
                     var sogiuong = $(this).closest('tr').find('td:nth-child(4)').text();
                     var trangthai = $(this).closest('tr').find('td:nth-child(5)').text();
-
+                    var anh = $(this).closest('tr').find('td:nth-child(6)').find('img').attr('src');
+                    console.log(anh)
                     // call ajax
                     $.ajax({
                         url: 'http://localhost:8080/baitaplon_nhom7/gettyperoom',
@@ -246,7 +248,7 @@
                             strcreate +=
                                 "<tr> <td> <label>Số phòng: </label> </td><td> <input name='SoPhong' value='"+sophong+"' required>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Ảnh: </label> </td><td> <input name='Anh' required>  </td></tr>";
+                                "<tr> <td> <label>Ảnh: </label> </td><td> <input name='Anh' value = '"+anh+"' required>  </td></tr>";
                             strcreate +=
                                 "<tr> <td> <label>Số người: </label> </td><td> <input name='SoNguoi' type='number' min='1' value='"+songuoi+"' required> </td></tr>";
                             strcreate +=
@@ -254,7 +256,7 @@
                                 "<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option>" +
                                 "<option value='4'>4</option></select>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='10000'>  </td></tr></table>";
+                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='1000000'>  </td></tr></table>";
                             $(".modal-body").html(strcreate);
                               }
                     }); 

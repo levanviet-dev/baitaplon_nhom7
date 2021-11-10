@@ -1,0 +1,1 @@
+Cảm ơn {{$name}} . {{$content}}.

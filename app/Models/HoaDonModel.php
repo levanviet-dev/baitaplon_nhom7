@@ -54,15 +54,19 @@ class HoaDonModel extends Model
         public static function getallHoaDon(){
            $data = DB::select("select  hoadon.ID,hoadon.TongTien, booking.TenKH,booking.SoDienThoai,dichvu.TenDichVu,
             booking.CheckIn,booking.CheckOut,booking.DiaChi , booking.SoPhong FROM hoadon, 
-            booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 0 AND dichvu.ID = booking.ID_DichVu");
+            booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 0 AND dichvu.ID = booking.ID_DichVu
+            order by NgayTao desc");
             return $data;
         }
         // get all bill payed
         public static function getHoaDonThanhToan(){
             $data = DB::select("select  hoadon.ID,hoadon.TongTien, booking.TenKH,booking.SoDienThoai,dichvu.TenDichVu,
             hoadon.GhiChu,booking.CheckIn,booking.CheckOut,booking.DiaChi , booking.SoPhong FROM hoadon, 
-            booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 1 AND dichvu.ID = booking.ID_DichVu");
+            booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 1 AND dichvu.ID = booking.ID_DichVu 
+            order by NgayTao desc");
             return $data;
+            // $datas = DB::table('booking')->join('hoadon')->select('hoadon.ID','hoadon.TongTien','booking.TenKH','booking.SoDienThoai','dichvu.TenDichVu',
+            // 'hoadon.GhiChu','booking.CheckIn','booking.CheckOut','booking.DiaChi' , 'booking.SoPhong') 
         }
         // get money bill by id bill
         public static function getmoneyHoaDon($ID_HoaDon){
@@ -95,7 +99,7 @@ class HoaDonModel extends Model
          DB::update("update phong set TrangThai = '0' where ID_LoaiPhong = '$Booking->ID_LoaiPhong'
          AND SoPhong = '$Booking->SoPhong'");
          DB::update("update hoadon set TrangThai = '1', TongTien = '$Totalprice',
-         GhiChu = '$hinhthucthanhtoan' where ID = '$ID_HoaDon'");
+         GhiChu = '$hinhthucthanhtoan',KhuyenMai = $giamgia,NgayTao = '".Date('Y-m-d H:i:s')."' where ID = '$ID_HoaDon'");
         }
         
         public static function getrevenue(){

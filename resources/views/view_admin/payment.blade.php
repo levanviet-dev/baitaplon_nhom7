@@ -123,7 +123,8 @@
                               <td>$p->SoPhong</td><td>$p->CheckIn</td>
                               <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
                               <td> ".number_format($p->TongTien)." </td><td>$p->GhiChu</td>
-                              <td><button class ='payed btn btn-primary' data-toggle = 'modal' data-target = '#myModal'>In</button></td></tr>";
+                              <td><a class ='payed btn btn-primary' target='_blank'
+                              href='http://localhost:8080/baitaplon_nhom7/admin/print/$p->ID')>In</a></td></tr>";
                           }
                            
                           ?>
@@ -257,7 +258,7 @@ $('#cuspay').click(function(){
   success: function(data){
     if(data == 1){
         alert('Cảm ơn bạn đã thanh toán!');
-        window.open(location.reload(true));
+        location.reload();
     }
   }
   });

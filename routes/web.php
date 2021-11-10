@@ -34,7 +34,7 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/roombooking','Admin\AdminController@roombooking');
     Route::get('/payment','Admin\AdminController@payment'); 
     Route::get('/customer','Admin\AdminController@customer');
-    Route::get('/adcontact','Admin\AdminController@adcontact');
+    Route::get('/adcontact','Admin\AdminController@adcontact')->name('adcontact');
     Route::get('/test','Admin\AdminController@test');
     // xu li ben phong 
     Route::post('/createroom','PhongController@create');
@@ -42,8 +42,12 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/deleteroom/{id}','PhongController@delete');
     // xu ly ben doanh thu lay doanh thu
     Route::get('/getrevenue','HoadonController@getrevenue');
+     // in hoa don
+    Route::get('/print/{ID}','HoadonController@printHD');
     // admin user profile
     Route::get('/profile','Admin\AdminController@account');
+    // admin sent mail
+    Route::post('/sentmail','Admin\AdminController@sentmail');
 });
 // route get data by api
 //Admin booking room
@@ -51,6 +55,8 @@ Route::group(['prefix'=>'/admin'], function () {
 Route::get('/getroom','PhongController@getroom');
 // get data room booked
 Route::get('/bookedroom','PhongController@bookedroom');
+// xóa booking
+Route::post('/deletebook','BookingController@delete');
 // Admin dashboard
 // get data table booking 
 Route::get('/booked','Admin\AdminController@booked');
