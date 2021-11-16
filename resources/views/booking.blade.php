@@ -52,22 +52,13 @@
                                     @csrf
                                     {{-- person info --}}
                                     <div class="form-group">
-                                        <label>Tên của bạn</label>
-                                        <input name="name" class="form-control" required>
+                                        <label>Tên của bạn<span style="color:red" id ="errorname" >(*)</span></label>
+                                        <input name="name" id="name" class="form-control" required onblur="validate()">
                                     
                                     </div>
-                                    {{-- @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    @endif --}}
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input name="email" type="email" class="form-control" required>
+                                        <label>Email<span style="color:red" id ="erroremail" >(*)</span></label>
+                                        <input name="email" id="email" type="email" class="form-control" required onblur="validate()">
 
                                     </div>
                                     <div class="form-group">
@@ -93,8 +84,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Số điện thoại</label>
-                                        <input name="phone" type="text" class="form-control" required>
+                                        <label>Số điện thoại<span style="color:red" id ="errorphone" >(*)</span></label>
+                                        <input name="phone" id="phone" type="text" class="form-control" required onblur="validate()">
 
                                     </div>
                                    
@@ -183,13 +174,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Ngày vào</label>
-                                        <input name="cin" type="date" id="cin" class="form-control" required>
+                                        <label>Ngày vào<span style="color:red" id ="errorcheckin" >(*)</span></label>
+                                        <input name="cin" type="date" id="cin" class="form-control" required onblur="checkday()">
 
                                     </div>
                                     <div class="form-group">
-                                        <label>Ngày ra</label>
-                                        <input name="cout" type="date" id="cout" class="form-control" required>
+                                        <label>Ngày ra<span style="color:red" id ="errorcheckout" >(*)</label>
+                                        <input name="cout" type="date" id="cout" class="form-control" required onblur="checkday()">
 
                                     </div>
 
@@ -211,7 +202,7 @@
                                 <p>Nhập dãy mã ngẫu nhiên <br /></p>
                                 <input type="text" name="code1" title="random code" required     />
                                 <input type="hidden" name="code" value="<?php echo $Random_code; ?>" />
-                                <input type="submit" name="Gửi" class="btn btn-primary">
+                                <input type="submit" id="sent" name="Gửi" class="btn btn-primary">
                             {{-- end from --}}
                             </form>
                            
@@ -339,5 +330,120 @@
         $('#totalprice').val(total);
     }
 </script>
+<script>
+    var co = 0;
+    function validate()
+       {
+           var name= document.getElementById('name').value;
+           var errorname = document.getElementById('errorname');
+           var phone =document.getElementById('phone').value; 
+           var errorphone = document.getElementById('errorphone');
+           var email = document.getElementById('email').value; 
+           var erroremail = document.getElementById('erroremail');
+   
+   
+               var regexName = /^[^\d+]*[\d+]{0}[^\d+]*$/;
+               var regexPhone =/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
+               var regexEmail =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+               if(name == null || name =='' )
+               {
+                   errorname.innerHTML = " Không được để trống!";
+                   co = 1;
+               }
+               else if(!regexName.test(name))
+               {
+                   errorname.innerHTML = " Tên không hợp lệ!";
+                   co = 1;
+               }
+               else
+               {
+                   errorname.innerHTML = "";
+                   co = 0;
+               }
+   
+               //Phone 
+               if(phone == null || phone =='' )
+               {
+                   errorphone.innerHTML = " Không được để trống!";
+                   co = 1;
+               }
+               else if(!regexPhone.test(phone))
+               {
+                   errorphone.innerHTML = " Số điện thoại không hợp lệ !";
+                   co = 1;
+               }
+               else
+               {
+                   errorphone.innerHTML = "";
+                   co = 0;
+               }
+               // Email
+               if(email == null || email =='' )
+               {
+                   erroremail.innerHTML = " Không được để trống!";
+                   co = 1;
+               }
+               else if(!regexEmail.test(email))
+               {
+                   erroremail.innerHTML = " Địa chỉ email không hợp lệ!";
+                   co = 1;
+               }
+               else
+               {
+                   erroremail.innerHTML = "";
+                   co = 0;
+               }
+               kiemtraco();
+               return false;
+       }
+       
+        function checkday()
+            {
+              var date = new Date();
+               var errorcheckout = document.getElementById('errorcheckout');
+               Datein = document.getElementById('cin').value;
+               var errorcheckin = document.getElementById('errorcheckin');
+               var datecheckin = new Date(Datein);
+   
+   
+               Dateout = document.getElementById('cout').value;
+               var datecheckout = new Date(Dateout);
+             
+               if(datecheckout <= datecheckin)
+               {
+                   errorcheckout.innerHTML = " Ngày ra phải khác ngày vào";
+                   co = 1;
+               }
+               else if(datecheckin < date )
+               {
+                   errorcheckin.innerHTML = " Ngày vào không hợp lệ";
+                   co = 1;
+               }
+             else if(datecheckout< date )
+             {
+               errorcheckout.innerHTML = " Ngày ra không hợp lệ";
+               co = 1;
+             }
+             else
+             {
+                   errorcheckout.innerHTML = " ";
+                   errorcheckin.innerHTML = " ";
+                   co = 0;
+               }
+               kiemtraco();
+               return false;
+            }
+            function kiemtraco(){
+                if(co == 1){
+                    console.log('chưa đc gửi');
+                    document.getElementById("sent").disabled = true;
+                }
+                if(co == 0){
+                    console.log('gửi');
+                    document.getElementById("sent").disabled = false;
+                }
 
+            }
+       </script>
+   
 </html>
