@@ -12,27 +12,42 @@ class BookingModel extends Model
     use HasFactory;
     // function get list booking
     public static function getbooking(){
-        $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, CheckOut,
-    TrangThai,SoThe,TenDichVu,SoPhong, booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",
-    TrangThai, loaiphong.TenLoai "LoaiPhong", loaiphong.ID "loaiphongID",DiaChi, booking.SoGiuong  "SoGiuong" ,
-    (loaiphong.giatien+dichvu.giatien) "GiaTien", dichvu.GiaTien "TienDV" 
-    from Booking,LoaiPhong,DichVu,loaithe 
-    where Booking.ID_LoaiPhong = LoaiPhong.ID 
-    and Booking.ID_DichVu = DichVu.ID 
-    and loaithe.ID = booking.ID_LoaiThe 
-    and booking.TrangThai = "0" order by ThoiGian');
-     return $datas;
+    //     $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, CheckOut,
+    // TrangThai,SoThe,TenDichVu,SoPhong, booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",
+    // TrangThai, loaiphong.TenLoai "LoaiPhong", loaiphong.ID "loaiphongID",DiaChi, booking.SoGiuong  "SoGiuong" ,
+    // (loaiphong.giatien+dichvu.giatien) "GiaTien", dichvu.GiaTien "TienDV" 
+    // from Booking,LoaiPhong,DichVu,loaithe 
+    // where Booking.ID_LoaiPhong = LoaiPhong.ID 
+    // and Booking.ID_DichVu = DichVu.ID 
+    // and loaithe.ID = booking.ID_LoaiThe 
+    // and booking.TrangThai = "0" order by ThoiGian');
+    $data = DB::table('booking')->join('loaiphong','booking.ID_LoaiPhong','=','loaiphong.ID')
+    ->join('DichVu','booking.ID_DichVu','=','DichVu.ID')->join('LoaiThe','booking.ID_LoaiThe','=','LoaiThe.ID')
+    ->where('booking.TrangThai','=','0')->orderBy('CheckIn')
+    ->select('Booking.ID','TenKH','SoDienThoai','Email','CheckIn', 'CheckOut',
+    'TrangThai','SoThe','TenDichVu','SoPhong', 'booking.SoNguoi',DB::raw('LoaiThe.TenLoai "LoaiThe"'),
+    'TrangThai',DB::raw( 'loaiphong.TenLoai "LoaiPhong"'), DB::raw('loaiphong.ID "loaiphongID"'),'DiaChi', DB::raw('booking.SoGiuong  "SoGiuong"' ),
+    DB::raw('(loaiphong.giatien+dichvu.giatien) "GiaTien"'),DB::raw( 'dichvu.GiaTien "TienDV"'))->paginate(5);
+    //dd($data); 
+    return $data;
     }
     // function get list booked room
     public static function booked(){
-        $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, 
-        CheckOut,TrangThai,SoThe,TenDichVu,SoPhong,booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",TrangThai,loaiphong.TenLoai "LoaiPhong",DiaChi 
-        from Booking,LoaiPhong,DichVu,loaithe 
-        where Booking.ID_LoaiPhong = LoaiPhong.ID 
-        and Booking.ID_DichVu = DichVu.ID 
-        and loaithe.ID = booking.ID_LoaiThe
-        and booking.TrangThai = "1"');
-       return $datas;
+        // $datas = DB::select('select Booking.ID,TenKH,SoDienThoai,Email,CheckIn, 
+        // CheckOut,TrangThai,SoThe,TenDichVu,SoPhong,booking.SoNguoi,LoaiThe.TenLoai "LoaiThe",TrangThai,loaiphong.TenLoai "LoaiPhong",DiaChi 
+        // from Booking,LoaiPhong,DichVu,loaithe 
+        // where Booking.ID_LoaiPhong = LoaiPhong.ID 
+        // and Booking.ID_DichVu = DichVu.ID 
+        // and loaithe.ID = booking.ID_LoaiThe
+        // and booking.TrangThai = "1"');
+        $data = DB::table('booking')->join('loaiphong','booking.ID_LoaiPhong','=','loaiphong.ID')
+        ->join('DichVu','booking.ID_DichVu','=','DichVu.ID')->join('LoaiThe','booking.ID_LoaiThe','=','LoaiThe.ID')
+        ->where('booking.TrangThai','=','1')->orderBy('ThoiGian')
+        ->select('Booking.ID','TenKH','SoDienThoai','Email','CheckIn', 'CheckOut',
+        'TrangThai','SoThe','TenDichVu','SoPhong', 'booking.SoNguoi',DB::raw('LoaiThe.TenLoai "LoaiThe"'),
+        'TrangThai',DB::raw( 'loaiphong.TenLoai "LoaiPhong"'), DB::raw('loaiphong.ID "loaiphongID"'),'DiaChi', DB::raw('booking.SoGiuong  "SoGiuong"' ),
+        DB::raw('(loaiphong.giatien+dichvu.giatien) "GiaTien"'),DB::raw( 'dichvu.GiaTien "TienDV"'))->paginate(1);
+       return $data;
     }
    // function update bookroom set room for person booking
    // this is not success
@@ -79,6 +94,19 @@ class BookingModel extends Model
       array_push($arr,$dontwent);
       array_push($arr,($allnum-$dontwent));
       return $arr;
+    }
+    // function seach
+    public static function search($key){
+        $data = DB::table('booking')->join('loaiphong','booking.ID_LoaiPhong','=','loaiphong.ID')
+        ->join('DichVu','booking.ID_DichVu','=','DichVu.ID')->join('LoaiThe','booking.ID_LoaiThe','=','LoaiThe.ID')
+        ->where('booking.TrangThai','=','0')->orderBy('ThoiGian')->where('booking.TenKH','LIKE','%'.$key.'%')
+        ->select('Booking.ID','TenKH','SoDienThoai','Email','CheckIn', 'CheckOut',
+        'TrangThai','SoThe','TenDichVu','SoPhong', 'booking.SoNguoi',DB::raw('LoaiThe.TenLoai "LoaiThe"'),
+        'TrangThai',DB::raw( 'loaiphong.TenLoai "LoaiPhong"'), DB::raw('loaiphong.ID "loaiphongID"'),'DiaChi', DB::raw('booking.SoGiuong  "SoGiuong"' ),
+        DB::raw('(loaiphong.giatien+dichvu.giatien) "GiaTien"'),DB::raw( 'dichvu.GiaTien "TienDV"'))->paginate(5);
+        //dd($data); 
+        return $data;
+
     }
 
 }

@@ -48,14 +48,23 @@
                                 Thông tin người dùng
                             </div>
                             <div class="panel-body">
-                                <form name="form" method="post" action="create">
+                                <form name="form" method="post" action="{{ route('createbooking')}}">
                                     @csrf
                                     {{-- person info --}}
                                     <div class="form-group">
                                         <label>Tên của bạn</label>
                                         <input name="name" class="form-control" required>
-
+                                    
                                     </div>
+                                    {{-- @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif --}}
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input name="email" type="email" class="form-control" required>
@@ -88,7 +97,7 @@
                                         <input name="phone" type="text" class="form-control" required>
 
                                     </div>
-
+                                   
                             </div>
 
                         </div>
@@ -203,8 +212,9 @@
                                 <input type="text" name="code1" title="random code" required     />
                                 <input type="hidden" name="code" value="<?php echo $Random_code; ?>" />
                                 <input type="submit" name="Gửi" class="btn btn-primary">
-                                </form>
-
+                            {{-- end from --}}
+                            </form>
+                           
                             </div>
                         </div>
                     </div>

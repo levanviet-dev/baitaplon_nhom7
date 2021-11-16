@@ -42,11 +42,11 @@
                                     <div class="form-group">
                                         <h3>Danh sách phòng đang hoạt động</h3>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="">Tìm kiếm</label>
                                         <input type="text">
                                         <button type="submit">Tìm kiếm</button>
-                                    </div>
+                                    </div> --}}
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -89,10 +89,10 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                     <div class="panel-body">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Search</label>
                             <input type="text" name="" id="" aria-describedby="helpId" placeholder="">
-                        </div>
+                        </div> --}}
                         <h3>Danh sách phòng trống</h3>
                         <table class="table">
                             <thead>
@@ -103,6 +103,7 @@
                                     <th>Số giường</th>
                                     <th>Trạng thái</th>
                                     <th>Ảnh</th>
+                                    <th>Giá tiền (VNĐ)</th>
                                     <th>Tính năng</th>
 
                                 </tr>
@@ -115,6 +116,7 @@
                                   <tr><td>$r->TenLoai</td><td data-id='$r->ID'>$r->SoPhong</td>
                                   <td>$r->SoNguoi</td><td>$r->SoGiuong</td>
                                   <td>$r->KiemTra</td><td><img src='$r->Anh' style='width:10em;height:8em;'></td>
+                                  <td data-money='$r->GiaTien'>".number_format($r->GiaTien)."</td>
                                   <td><button class='btn btn-primary edit' data-toggle='modal' data-target='#myModal'>
                                     Sửa</button>
                                   <button class='btn btn-primary'>Xóa</button> </td></tr>";
@@ -230,8 +232,9 @@
                     var sogiuong = $(this).closest('tr').find('td:nth-child(4)').text();
                     var trangthai = $(this).closest('tr').find('td:nth-child(5)').text();
                     var anh = $(this).closest('tr').find('td:nth-child(6)').find('img').attr('src');
-                    console.log(anh)
-                    // call ajax
+                    var giatien =  $(this).closest('tr').find('td:nth-child(7)').data('money');
+                    console.log(giatien)
+                    // call ajax cập nhật phòng ban
                     $.ajax({
                         url: 'http://localhost:8080/baitaplon_nhom7/gettyperoom',
                         datatype: 'JSON',
@@ -256,7 +259,7 @@
                                 "<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option>" +
                                 "<option value='4'>4</option></select>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='1000000'>  </td></tr></table>";
+                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='"+giatien+"'>  </td></tr></table>";
                             $(".modal-body").html(strcreate);
                               }
                     }); 
@@ -264,10 +267,8 @@
                            $('#putmethod').html('@method("put")');
                             $('.modals').html('Cập nhật');
 //
-
-
                 });
-                
+                 // xóa phòng
                 $('.delete').click(function(){
                  var idr = $(this).closest('tr').find('td:nth-child(2)').data('id');
                  if(confirm('Bạn có chắc muốn xóa')){

@@ -45,7 +45,7 @@
                                                     <div class="table-responsive">
                                                         <div class="form-group">
                                                             <label for="">Tìm kiếm</label>
-                                                            <input type="text">
+                                                            <input type="text" name="seaching" id="searching">
                                                             <button type="submit">Tìm kiếm</button>
                                                         </div>
                                                         <h3>Danh sách đặt phòng</h3>
@@ -92,7 +92,7 @@
                                                             </tbody>
                                                         </table>
                                                         <div class="d-flex justify-content-center">
-                                                            {{-- {!! $data->render() !!} --}}
+                                                            {{ $data->links() }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,10 +116,6 @@
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
-                                            <div class="form-group">
-                                                <label for="">Tìm kiếm</label>
-                                                <input type="text" name="" id="" aria-describedby="helpId" placeholder="">
-                                            </div>
                                             <h3>Danh sách đã ở phòng</h3>
 
                                             <table class="table">
@@ -135,12 +131,36 @@
                                                         <th>Ngày vào</th>
                                                         <th>Ngày ra</th>
                                                         <th>Số điện thoại</th>
-                                                        <th>Tính năng</th>
+                                                  
                                                     </tr>
                                                 </thead>
                                                 <tbody id="bookedroom">
+                                                    <?php
+                                                                
+                                                                foreach ($useBill as $d) {
+                                                                    # code...
+                                                                    $style = '';
+                                                                    $xoa = '';
+                                                                
+                                                                    if ($d->CheckOut >= date('Y-m-d')) {
+                                                                        $style = "style='background-color: #CCFFCC'";
+                                                                    } else {
+                                                                        # code...
+                                                                        $style = "style='background-color: #FF9966'";
+                                                                        $xoa = "<button class='btn btn-primary deletebook' data-id='$d->ID'>Xóa</button>";
+                                                                    }
+                                                                    echo "<tr ".$style."><td >$d->TenKH</td><td>$d->Email</td><td>$d->LoaiThe : $d->SoThe</td>
+                                                                       <td>$d->DiaChi</td><td data-id=" .$d->SoGiuong .' data-typeroom=' .$d->loaiphongID .
+                                                                        ">$d->LoaiPhong</td><td>$d->SoNguoi</td><td data-id=" .$d->TienDV .
+                                                                        ">$d->TenDichVu</td><td>$d->CheckIn</td><td>$d->CheckOut</td><td>$d->SoDienThoai</td>";
+                                                                }
+                                                                ?>
+                                                            </tbody>
                                                 </tbody>
                                             </table>
+                                            <div class="d-flex justify-content-center">
+                                                {{ $useBill->links() }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -224,7 +244,7 @@
             // get element selected
             $(".selected").attr("data-toggle", "modal");
             $('.selected').attr("data-target", "#myModal");
-            loadbookedroom();
+            // loadbookedroom();
             getnumcuswent();
             // click selected
             var id, idroom, numroom, cin, cout, moneyservice = 0;
@@ -317,7 +337,8 @@
                             $("#" + id).remove();
                             id = -1;
                             alert('Cập nhật thành công');
-                            loadbookedroom();
+                            //loadbookedroom();
+                            location.reload(true);
                         } else {
                             alert('Vui lòng nhập đầy đủ');
                         }
@@ -339,32 +360,6 @@
 
                 }
             })
-        //    hàm load lại đặt phòng đã đc cập nhật số phòng
-
-        function loadbookedroom() {
-            console.log("ready!");
-            $.ajax({
-                url: 'http://localhost:8080/baitaplon_nhom7/booked',
-                datatype: 'JSON',
-                success: function(data) {
-                    var s = JSON.parse(data);
-                    var str = ""
-                    console.log(s[0]['ID']);
-                    for (let i = 0; i < s.length; i++) {
-                        str += "<tr><td>" + s[i]['TenKH'] + "</td>" +
-                            "<td>" + s[i]['Email'] + "</td>" + "<td>" + s[i]['LoaiThe'] + ": " + s[i]['SoThe'] +
-                            "</td>" + "<td>" + s[i]['DiaChi'] + "</td>" + "<td>" + s[i]['LoaiPhong'] + "</td>" +
-                            "<td>" + s[i]['SoNguoi'] + "</td>" + "<td>" + s[i]['TenDichVu'] + "</td>" + "<td>" +
-                            s[i]['CheckIn'] + "</td>" +
-                            "<td>" + s[i]['CheckOut'] + "</td>" + "<td>" + s[i]['SoDienThoai'] + "</td>" +
-                            "<td><button class='btn btn-primary'>Payment</button></td>" +
-                            "</tr>";
-                    }
-                    $('#bookedroom').html(str);
-                    $('.bookedr').html(s.length);
-                }
-            });
-        }
         // function caculator money for customer
         function getmoney(typemoney, servicemoney, day) {
             var total = (typemoney * day + servicemoney);
@@ -421,6 +416,48 @@
 
 
         }
+        $('#searching').keyup(function(){
+          console.log($(this).val());
+            $.ajax({
+             url: 'search/'+$(this).val(),
+             datatype: 'JSON',
+             success : function(respone){
+              $('#bookroom').html(respone);
+
+             }
+
+
+            })
+
+        });
+
+           //    hàm load lại đặt phòng đã đc cập nhật số phòng
+
+        // function loadbookedroom() {
+        //     console.log("ready!");
+        //     $.ajax({
+        //         url: 'http://localhost:8080/baitaplon_nhom7/booked',
+        //         datatype: 'JSON',
+        //         success: function(data) {
+        //             var s = JSON.parse(data);
+        //             var str = ""
+        //             console.log(s[0]['ID']);
+        //             for (let i = 0; i < s.length; i++) {
+        //                 str += "<tr><td>" + s[i]['TenKH'] + "</td>" +
+        //                     "<td>" + s[i]['Email'] + "</td>" + "<td>" + s[i]['LoaiThe'] + ": " + s[i]['SoThe'] +
+        //                     "</td>" + "<td>" + s[i]['DiaChi'] + "</td>" + "<td>" + s[i]['LoaiPhong'] + "</td>" +
+        //                     "<td>" + s[i]['SoNguoi'] + "</td>" + "<td>" + s[i]['TenDichVu'] + "</td>" + "<td>" +
+        //                     s[i]['CheckIn'] + "</td>" +
+        //                     "<td>" + s[i]['CheckOut'] + "</td>" + "<td>" + s[i]['SoDienThoai'] + "</td>" +
+        //                     "<td><button class='btn btn-primary'>Payment</button></td>" +
+        //                     "</tr>";
+        //             }
+        //             $('#bookedroom').html(str);
+        //             $('.bookedr').html(s.length);
+        //         }
+        //     });
+        // }
+
     </script>
 
 

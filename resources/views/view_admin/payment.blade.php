@@ -131,7 +131,7 @@
                         </tbody>
                         
                     </table>
-
+                     {{ $dathanhtoan->links() }}
                 </div>
 
             </div>

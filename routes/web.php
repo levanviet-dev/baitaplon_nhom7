@@ -21,8 +21,8 @@ Route::get('/', function () {
     return view('home',['data'=>$data]);
 });
 // router customer 
-Route::get('/booking','BookingController@index');
-Route::post('/create','BookingController@create');
+Route::get('/booking','BookingController@index')->name('booking');
+Route::post('/create','BookingController@create')->name('createbooking');
 // create contact
 Route::post('/contact','LienHeController@create');
 // admin router
@@ -48,15 +48,23 @@ Route::group(['prefix'=>'/admin'], function () {
     Route::get('/profile','Admin\AdminController@account');
     // admin sent mail
     Route::post('/sentmail','Admin\AdminController@sentmail');
+    // admin service 
+    Route::get('/service','Admin\AdminController@service')->name('service');
+    Route::post('/editservice','DichVuController@edit');
+    Route::post('/createservice','DichVuController@create');
+    Route::get('/deleteservice/{ID}','DichVuController@delete');
+
 });
 // route get data by api
-//Admin booking room
+//Admin booking room (trang dashboard)
 // route get room view dashboard get room available
 Route::get('/getroom','PhongController@getroom');
 // get data room booked
 Route::get('/bookedroom','PhongController@bookedroom');
 // xóa booking
 Route::post('/deletebook','BookingController@delete');
+// tim kiem
+Route::get('/search/{key}','BookingController@seaching');
 // Admin dashboard
 // get data table booking 
 Route::get('/booked','Admin\AdminController@booked');

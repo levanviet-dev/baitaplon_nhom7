@@ -64,9 +64,15 @@ class HoaDonModel extends Model
             hoadon.GhiChu,booking.CheckIn,booking.CheckOut,booking.DiaChi , booking.SoPhong FROM hoadon, 
             booking,dichvu WHERE hoadon.ID_Booking = booking.ID and hoadon.TrangThai = 1 AND dichvu.ID = booking.ID_DichVu 
             order by NgayTao desc");
-            return $data;
-            // $datas = DB::table('booking')->join('hoadon')->select('hoadon.ID','hoadon.TongTien','booking.TenKH','booking.SoDienThoai','dichvu.TenDichVu',
-            // 'hoadon.GhiChu','booking.CheckIn','booking.CheckOut','booking.DiaChi' , 'booking.SoPhong') 
+            //return $data;
+            $datas = DB::table('booking')->join('hoadon','hoadon.ID_Booking','=','booking.ID')
+            ->join('dichvu','booking.ID_DichVu','=','DichVu.ID')
+            ->where('Hoadon.TrangThai','=','1')->orderBy('CheckOut','desc')
+            ->select('hoadon.ID','hoadon.TongTien','booking.TenKH','booking.SoDienThoai','dichvu.TenDichVu',
+            'hoadon.GhiChu','booking.CheckIn','booking.CheckOut','booking.DiaChi' , 'booking.SoPhong')
+            ->paginate(10);
+          // dd($datas);
+            return $datas; 
         }
         // get money bill by id bill
         public static function getmoneyHoaDon($ID_HoaDon){

@@ -13,7 +13,7 @@ class PhongModel extends Model
     use HasFactory;
     // function get data room 
     public static function getroom(){
-        $data = DB::select("select  phong.ID,phong.Anh, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
+        $data = DB::select("select  phong.ID,phong.Anh,phong.GiaTien, phong.SoPhong,TenLoai,TrangThai,KiemTra,phong.SoNguoi,phong.SoGiuong from phong,loaiphong
         where phong.ID_LoaiPhong = loaiphong.ID and TrangThai = '0'");
         // $data = array_map(function($item){
         //     return (array) $item;

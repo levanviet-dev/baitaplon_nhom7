@@ -20,9 +20,12 @@ class AdminController extends Controller
 {
     // admin dashboard
   public function dashboard(){
+    // danh sách hóa đơn đặt tại khách sạn
      $data = BookingModel::getbooking();
+     // danh sách đơn đang sử dụng
+     $useBill = BookingModel::booked();
     // dd($data);
-    return view('view_admin.dashboard',['data'=>$data]);
+    return view('view_admin.dashboard',['data'=>$data,'useBill'=>$useBill]);
   }
 
   // admin list booked of dashboard
@@ -73,19 +76,24 @@ class AdminController extends Controller
   //  echo $request->title;
   //  echo $request->content;
       
-    // Mail::send('view_admin.email',[
-    //     'name'=> $request->name,
-    //     'content'=> $request->content,
-    //   ],function($mail) use($request){
-    //      $mail->to($request->email,$request->name);
-    //      $mail->from('hotrokhachhang3211@gmail.com');
-    //      $mail->subject($request->title);
-    //   });
+    Mail::send('view_admin.email',[
+        'name'=> $request->name,
+        'content'=> $request->content,
+      ],function($mail) use($request){
+         $mail->to($request->email,$request->name);
+         $mail->from('hotrokhachhang3211@gmail.com');
+         $mail->subject($request->title);
+      });
     DB::table('lienhe')->where('ID','=',$request->ID)->update([
       'TrangThai' => 1
     ]); 
     return Redirect()->route('adcontact');
      
+ }
+ // function dich vu
+ public function service(){
+    $data = DB::table('dichvu')->get();
+    return view('view_admin.service',['data'=>$data]);
 
 
  }

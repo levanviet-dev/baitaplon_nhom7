@@ -78,6 +78,9 @@
                         <a href="http://localhost:8080/baitaplon_nhom7/admin/customer"><i class="fa fa-qrcode"></i> Khách hàng</a>
                     </li>
                     <li>
+                        <a href="http://localhost:8080/baitaplon_nhom7/admin/service"><i class="fa fa-qrcode"></i> Dich Vụ</a>
+                    </li>
+                    <li>
                         <a href="http://localhost:8080/baitaplon_nhom7/admin/logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                     </li>
                 </ul>
