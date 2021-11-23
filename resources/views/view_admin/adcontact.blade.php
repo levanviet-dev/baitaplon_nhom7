@@ -44,11 +44,7 @@
 
                         <div class="panel-body">
                             <div class="table-responsive">
-                               <div class="form-group">
-                                 <label for="">Tìm kiếm</label>
-                                 <input type="text">
-                                 <button type="submit">Tìm kiếm</button>
-                               </div>
+                              
                                <table class="table">
                                 <thead>
                                     <tr>

@@ -78,7 +78,8 @@ class HoaDonModel extends Model
         public static function getmoneyHoaDon($ID_HoaDon){
                // todo
             $data = DB::select("select (phong.GiaTien* CASE DATEDIFF(CURRENT_DATE(),booking.CheckIn) 
-            WHEN 0 then 1 ELSE DATEDIFF(CURRENT_DATE(),booking.CheckIn) END +dichvu.GiaTien) "."TongTien"."
+            WHEN 0 then 1 ELSE DATEDIFF(CURRENT_DATE(),booking.CheckIn) END +dichvu.GiaTien*CASE DATEDIFF(CURRENT_DATE(),booking.CheckIn) 
+            WHEN 0 then 1 ELSE DATEDIFF(CURRENT_DATE(),booking.CheckIn) END) "."TongTien"."
             from booking,phong,dichvu,hoadon WHERE booking.SoPhong = phong.SoPhong 
             AND booking.ID_DichVu = dichvu.ID AND booking.ID_LoaiPhong = phong.ID_LoaiPhong 
             AND booking.ID = hoadon.ID_Booking AND hoadon.ID = '$ID_HoaDon'");

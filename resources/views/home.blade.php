@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>SUNRISE HOTEL</title>
+    <title>Khách sạn SUNRISE</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,10 +45,10 @@
         </div>
         <div class="contact-bnr-w3-agile">
             <ul>
-                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">INFO@SUNRISE.COM</a></li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">INFO@GMAIL.COM</a></li>
                 <li><i class="fa fa-phone" aria-hidden="true"></i>+94 (65)222-44-55</li>
                 <li class="s-bar">
-                    <div class="search">
+                    {{-- <div class="search">
                         <input class="search_box" type="checkbox" id="search_box">
                         <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
                         <div class="search_form">
@@ -57,7 +57,7 @@
                                 <input type="submit" value="Search">
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </li>
             </ul>
         </div>
@@ -74,19 +74,19 @@
                         <span class="icon-bar"></span>
                     </button>
                     <h1><a class="navbar-brand" href="index.php">SUN <span>RISE</span>
-                            <p class="logo_w3l_agile_caption">Your Dreamy Resort</p>
+                            <p class="logo_w3l_agile_caption"></p>
                         </a></h1>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <nav class="menu menu--iris">
                         <ul class="nav navbar-nav menu__list">
-                            <li class="menu__item"><a href="index.html" class="menu__link">Home</a></li>
-                            <li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-                            <li class="menu__item"><a href="#team" class="menu__link scroll">Team</a></li>
-                            <li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
-                            <li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
-                            <li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
+                            <li class="menu__item"><a href="index.html" class="menu__link">Trang chủ</a></li>
+                            <li class="menu__item"><a href="#about" class="menu__link scroll">Thông tin</a></li>
+                            {{-- <li class="menu__item"><a href="#team" class="menu__link scroll">Đội ngũ</a></li> --}}
+                            {{-- <li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li> --}}
+                            <li class="menu__item"><a href="#rooms" class="menu__link scroll">Phòng</a></li>
+                            <li class="menu__item"><a href="#contact" class="menu__link scroll">Liên hệ với chúng tôi</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -107,10 +107,11 @@
                             <div class="container">
                                 <div class="agileits-banner-info">
                                     <h4>SUN RISE</h4>
-                                    <h3>We know what you love</h3>
-                                    <p>Welcome to our hotels</p>
+                                    <h3>Chúng tôi biết bạn yêu thích điều gì</h3>
+                                    <p>Chào mừng đến với khách sạn của chúng tôi</p>
                                     <div class="agileits_w3layouts_more menu__item">
-                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
+                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">
+                                            Tìm hiểu thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,10 +122,11 @@
                             <div class="container">
                                 <div class="agileits-banner-info">
                                     <h4>SUN RISE</h4>
-                                    <h3>Stay with friends & families</h3>
-                                    <p>Come & enjoy precious moment with us</p>
+                                    <h3>Ở với bạn bè và gia đình</h3>
+                                    <p>Hãy đến và tận hưởng khoảnh khắc quý giá với chúng tôi</p>
                                     <div class="agileits_w3layouts_more menu__item">
-                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
+                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">
+                                            Tìm hiểu thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +137,10 @@
                             <div class="container">
                                 <div class="agileits-banner-info">
                                     <h4>SUN RISE</h4>
-                                    <h3>want luxurious vacation?</h3>
-                                    <p>Get accommodation today</p>
+                                    <h3>Bạn muốn có kỳ nghỉ sang trọng</h3>
+                                    <p>Nhận chỗ ở ngay hôm nay</p>
                                     <div class="agileits_w3layouts_more menu__item">
-                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
+                                        <a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Tìm hiểu thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +179,7 @@
     <div id="availability-agileits">
         <div class="col-md-12 book-form-left-w3layouts">
             <a href="booking">
-                <h2>ROOM RESERVATION</h2>
+                <h2>Đặt phòng</h2>
             </a>
         </div>
 
@@ -187,9 +189,9 @@
     <div class="banner-bottom">
         <div class="container">
             <div class="agileits_banner_bottom">
-                <h3><span>Experience a good stay, enjoy fantastic offers</span> Find our friendly welcoming reception</h3>
+                <h3><span>TRẢI NGHIỆM MỘT KHU NGHỈ DƯỠNG TỐT, HƯỞNG CÁC ƯU ĐÃI TUYỆT VỜI</span> Tìm sự tiếp đón thân thiện của chúng tôi</h3>
             </div>
-            <div class="w3ls_banner_bottom_grids">
+            {{-- <div class="w3ls_banner_bottom_grids">
                 <ul class="cbp-ig-grid">
                     <li>
                         <div class="w3_grid_effect">
@@ -220,7 +222,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- //banner-bottom -->
@@ -228,15 +230,15 @@
     <div class="about-wthree" id="about">
         <div class="container">
             <div class="ab-w3l-spa">
-                <h3 class="title-w3-agileits title-black-wthree">About Our SUN RISE</h3>
-                <p class="about-para-w3ls">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Sed tempus vestibulum lacus blandit faucibus. Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, at imperdiet urna</p>
+                <h3 class="title-w3-agileits title-black-wthree">Về khách sạn chúng tôi</h3>
+                <p class="about-para-w3ls"></p>
                 <img src="{{url('public/sites')}}/images/about.jpg" class="img-responsive" alt="Hair Salon">
                 <div class="w3l-slider-img">
                     <img src="{{url('public/sites')}}/images/a1.jpg" class="img-responsive" alt="Hair Salon">
                 </div>
                 <div class="w3ls-info-about">
-                    <h4>You'll love all the amenities we offer!</h4>
-                    <p>Lorem ipsum dolor sit amet, ut magna aliqua. </p>
+                    <h4>Bạn sẽ thích tất cả các tiện nghi mà chúng tôi cung cấp!</h4>
+                    <p>Cảm ơn bạn đã bạn. </p>
                 </div>
             </div>
             <div class="clearfix"> </div>
@@ -247,25 +249,28 @@
     <div class="advantages">
         <div class="container">
             <div class="advantages-main">
-                <h3 class="title-w3-agileits">Our Services</h3>
+                <h3 class="title-w3-agileits">Dịch vụ của chúng tôi</h3>
                 <div class="advantage-bottom">
                     <div class="col-md-6 advantage-grid left-w3ls wow bounceInLeft" data-wow-delay="0.3s">
                         <div class="advantage-block ">
                             <i class="fa fa-credit-card" aria-hidden="true"></i>
-                            <h4>Stay First, Pay After! </h4>
-                            <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.</p>
-                            <p><i class="fa fa-check" aria-hidden="true"></i>Decorated room, proper air conditioned</p>
-                            <p><i class="fa fa-check" aria-hidden="true"></i>Private balcony</p>
+                            <h4>Ở trước, thanh toán sau! </h4>
+                            <p>Nhưng trong những thời điểm nhất định, và hoặc bởi những văn phòng cần thiết hoặc bởi những thứ cần thiết, nó cũng sẽ thường xảy ra như những thú vui.</p>
+                            <p><i class="fa fa-check" aria-hidden="true"></i>Phòng được trang trí, có máy lạnh thích hợp</p>
+                            <p><i class="fa fa-check" aria-hidden="true"></i>
+                                Ban công riêng</p>
 
                         </div>
                     </div>
                     <div class="col-md-6 advantage-grid right-w3ls wow zoomIn" data-wow-delay="0.3s">
                         <div class="advantage-block">
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <h4>24 Hour Restaurant</h4>
-                            <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.</p>
-                            <p><i class="fa fa-check" aria-hidden="true"></i>24 hours room service</p>
-                            <p><i class="fa fa-check" aria-hidden="true"></i>24-hour Concierge service</p>
+                            <h4>
+                                Nhà hàng 24 giờ</h4>
+                            <p>Nhưng trong những thời điểm nhất định, và hoặc bởi những văn phòng cần thiết hoặc bởi những thứ cần thiết, nó cũng sẽ thường xảy ra như những thú vui.</p>
+                            <p><i class="fa fa-check" aria-hidden="true"></i>
+                                Dịch vụ phòng 24 giờ</p>
+                            <p><i class="fa fa-check" aria-hidden="true"></i>Dịch vụ trợ giúp đặc biệt 24 giờ</p>
                         </div>
                     </div>
                     <div class="clearfix"> </div>
@@ -275,7 +280,7 @@
     </div>
     <!--//sevices-->
     <!-- team -->
-    <div class="team" id="team">
+    {{-- <div class="team" id="team">
         <div class="container">
             <h3 class="title-w3-agileits title-black-wthree">Meet Our Team</h3>
             <div id="horizontalTab">
@@ -369,11 +374,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- //team -->
     <!-- Gallery -->
     <section class="portfolio-w3ls" id="gallery">
-        <h3 class="title-w3-agileits title-black-wthree">Our Gallery</h3>
+        <h3 class="title-w3-agileits title-black-wthree">Phòng trưng bày của chúng tôi</h3>
         <div class="col-md-3 gallery-grid gallery1">
             <a href="images/g1.jpg" class="swipebox"><img src="{{url('public/sites')}}/images/g1.jpg" class="img-responsive" alt="/">
                 <div class="textbox">
@@ -481,7 +486,7 @@
     <!-- visitors -->
     <div class="w3l-visitors-agile">
         <div class="container">
-            <h3 class="title-w3-agileits title-black-wthree">What other visitors experienced</h3>
+            <h3 class="title-w3-agileits title-black-wthree">Những gì khách truy cập khác đã trải nghiệm</h3>
         </div>
         <div class="w3layouts_work_grids">
             <section class="slider">

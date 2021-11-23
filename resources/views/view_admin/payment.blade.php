@@ -39,12 +39,8 @@
 
                         <div class="panel-body">
                             <div class="table-responsive">
-                               <div class="form-group">
-                                 <label for="">Tìm kiếm</label>
-                                 <input type="text">
-                                 <button type="submit">Tìm kiếm</button>
-                               </div>
-                               <h3>Hóa đơn hiện tại</h3>
+                               
+                               <h3 style="text-align: center">Hóa đơn hiện tại</h3><br>
                                <table class="table">
                                 <thead>
                                     <tr>
@@ -94,12 +90,8 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                 <div class="panel-body">
-                  <div class="form-group">
-                    <label for="">Search</label>
-                    <input type="text"
-                      name="" id="" aria-describedby="helpId" placeholder="">
-                    </div>
-                    <h3>Hóa đơn đã thanh toán</h3>
+               
+                    <h3 style="text-align: center">Hóa đơn đã thanh toán</h3><br>
 
                     <table class="table">
                         <thead>
@@ -124,7 +116,7 @@
                               <td>$p->CheckOut</td><td>$p->SoDienThoai</td>
                               <td> ".number_format($p->TongTien)." </td><td>$p->GhiChu</td>
                               <td><a class ='payed btn btn-primary' target='_blank'
-                              href='http://localhost:8080/baitaplon_nhom7/admin/print/$p->ID')>In</a></td></tr>";
+                              href='http://localhost:8080/baitaplon_nhom7/admin/print/$p->ID')>In hóa đơn</a></td></tr>";
                           }
                            
                           ?>
@@ -230,14 +222,14 @@ $.ajax({
        console.log(pr[0]['TongTien']); 
        totalprice = pr[0]['TongTien'];
 
- var str = "<table class='table' style='margin : 0 auto;'><tr><td>Địa chỉ: </td><td>"+ diachi +"</td></tr>";
+ var str = "<table class='table' style='margin : 0 auto;'><tr><td>Địa chỉ: </td><td >"+ diachi +"</td></tr>";
     str += "<tr><td>Số phòng: </td><td left='20px'>"+ sophong +"</td></tr>";
     str += "<tr><td>Ngày vào: </td><td>"+ checkin +"</td></tr>";
     str += "<tr><td>Ngày ra: </td><td>"+ checkout +"</td></tr>";
     str += "<tr><td>Dịch vụ: </td><td>"+ dichvu +"</td></tr>";
-    str += "<tr><td>Loại hình thanh toán: </td><td><select id='cars'><option data-id='0'>Tiền mặt</option>"+
+    str += "<tr><td>Loại hình thanh toán: </td><td><select class='form-control' id='cars'><option data-id='0'>Tiền mặt</option>"+
   "<option data-id='1'>Dùng thẻ</option></select></td></tr>";
-    str+= "<tr><td>Giảm giá (%)</td><td><input type='number' id='giamgia' onchange='giamgia(value,"+totalprice+")' value = 0 min = '0' max = '100'><span>(Giá từ 0-100)</span></td>"
+    str+= "<tr><td>Giảm giá (%)</td><td><input class='form-control' type='number' id='giamgia' onchange='giamgia(value,"+totalprice+")' value = 0 min = '0' max = '100'><span>(Giá từ 0-100)</span></td>"
     str += "<tr><td>Tổng tiền: </td><td id='tiencuoi'>"+ totalprice.toLocaleString('en') +"</td></tr>"; 
 
     $('.modal-body').html(str);

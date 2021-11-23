@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RESERVATION SUNRISE HOTEL</title>
+    <title>Đặt phòng</title>
     <!-- Bootstrap Styles-->
     <link href="{{ url('public/sites') }}/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->

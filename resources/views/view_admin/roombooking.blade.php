@@ -40,7 +40,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <div class="form-group">
-                                        <h3>Danh sách phòng đang hoạt động</h3>
+                                        <h3 style="text-align: center">Danh sách phòng đang hoạt động</h3><br>
                                     </div>
                                     {{-- <div class="form-group">
                                         <label for="">Tìm kiếm</label>
@@ -53,6 +53,7 @@
                                                 <th>Loại phòng</th>
                                                 <th>Số phòng</th>
                                                 <th>Khách hàng</th>
+                                                <th>Giá tiền 1 ngày</th>
                                                 {{-- <th>Tính năng</th> --}}
                                             </tr>
                                         </thead>
@@ -62,7 +63,7 @@
                                             # code...
                                             echo "
                                               <tr><td>$r->TenLoai</td><td>$r->SoPhong</td>
-                                              <td>$r->TenKH</td>";
+                                              <td>$r->TenKH</td><td>".number_format($r->GiaTien)." VND</td>";
             
                                           }                                          
                                           ?>
@@ -93,7 +94,7 @@
                             <label for="">Search</label>
                             <input type="text" name="" id="" aria-describedby="helpId" placeholder="">
                         </div> --}}
-                        <h3>Danh sách phòng trống</h3>
+                        <h3 style="text-align: center">Danh sách phòng trống</h3><br>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -186,20 +187,20 @@
                             }
                             // console.log(str);
                             var strcreate =
-                                "<table class='table'><tr><td> <label>Loại phòng:</label> </td><td> <select name='ID_LoaiPhong'>" +
+                                "<table class='table'><tr><td> <label>Loại phòng:</label> </td><td> <select class='form-control' name='ID_LoaiPhong'>" +
                                 str + "</select> </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số phòng: </label> </td><td> <input name='SoPhong' required>  </td></tr>";
+                                "<tr> <td> <label>Số phòng: </label> </td><td> <input class='form-control' name='SoPhong' required>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Ảnh: </label> </td><td> <input name='Anh' required>  </td></tr>";
+                                "<tr> <td> <label>Ảnh: </label> </td><td> <input class='form-control' name='Anh' required>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số người: </label> </td><td> <input name='SoNguoi' type='number' min='1' value='1' required> </td></tr>";
+                                "<tr> <td> <label>Số người: </label> </td><td> <input class='form-control' name='SoNguoi' type='number' min='1' value='1' class='form-group' required> </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số giường: </label> </td><td>  <select name='SoGiuong'> " +
+                                "<tr> <td> <label>Số giường: </label> </td><td>  <select name='SoGiuong' class='form-control'> " +
                                 "<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option>" +
                                 "<option value='4'>4</option></select>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='10000'>  </td></tr></table>";
+                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input class='form-control' name='GiaTien' type='number' min='1000' value='10000'>  </td></tr></table>";
                             $(".modal-body").html(strcreate);
 
                         }
@@ -246,20 +247,20 @@
                             }
                              console.log(idr);
                             var strcreate =
-                                "<table class='table'><tr><td> <label>Loại phòng:</label><input name='ID' value='"+idr+"' type='hidden'> </td><td> <select name='ID_LoaiPhong'>" +
+                                "<table class='table'><tr><td> <label>Loại phòng:</label><input name='ID' value='"+idr+"' type='hidden'> </td><td> <select class='form-control' name='ID_LoaiPhong'>" +
                                 str + "</select> </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số phòng: </label> </td><td> <input name='SoPhong' value='"+sophong+"' required>  </td></tr>";
+                                "<tr> <td> <label>Số phòng: </label> </td><td> <input class='form-control' name='SoPhong' value='"+sophong+"' required>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Ảnh: </label> </td><td> <input name='Anh' value = '"+anh+"' required>  </td></tr>";
+                                "<tr> <td> <label>Ảnh: </label> </td><td> <input class='form-control' name='Anh' value = '"+anh+"' required>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số người: </label> </td><td> <input name='SoNguoi' type='number' min='1' value='"+songuoi+"' required> </td></tr>";
+                                "<tr> <td> <label>Số người: </label> </td><td> <input class='form-control' name='SoNguoi' type='number' min='1' value='"+songuoi+"' required> </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Số giường: </label> </td><td>  <select name='SoGiuong' > " +
+                                "<tr> <td> <label>Số giường: </label> </td><td>  <select class='form-control' name='SoGiuong' > " +
                                 "<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option>" +
                                 "<option value='4'>4</option></select>  </td></tr>";
                             strcreate +=
-                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input name='GiaTien' type='number' min='1000' value='"+giatien+"'>  </td></tr></table>";
+                                "<tr> <td> <label>Giá tiền(VND): </label> </td><td> <input class='form-control' name='GiaTien' type='number' min='1000' value='"+giatien+"'>  </td></tr></table>";
                             $(".modal-body").html(strcreate);
                               }
                     }); 

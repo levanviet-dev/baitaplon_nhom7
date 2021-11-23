@@ -48,7 +48,7 @@
                                                             <input type="text" name="seaching" id="searching">
                                                             <button type="submit">Tìm kiếm</button>
                                                         </div>
-                                                        <h3>Danh sách đặt phòng</h3>
+                                                        <h3 style="text-align: center">Danh sách đặt phòng</h3><br>
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
@@ -116,13 +116,13 @@
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
-                                            <h3>Danh sách đã ở phòng</h3>
+                                            <h3  style="text-align: center">Danh khách ở phòng</h3><br>
 
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>Tên khách hàng</th>
-                                                        <th>Email</th>
+                                                        <th>Số phòng</th>
                                                         <th>Thẻ</th>
                                                         <th>Địa chỉ</th>
                                                         <th>Phòng</th>
@@ -149,7 +149,7 @@
                                                                         $style = "style='background-color: #FF9966'";
                                                                         $xoa = "<button class='btn btn-primary deletebook' data-id='$d->ID'>Xóa</button>";
                                                                     }
-                                                                    echo "<tr ".$style."><td >$d->TenKH</td><td>$d->Email</td><td>$d->LoaiThe : $d->SoThe</td>
+                                                                    echo "<tr ".$style."><td >$d->TenKH</td><td>$d->LoaiPhong : $d->SoPhong</td><td>$d->LoaiThe : $d->SoThe</td>
                                                                        <td>$d->DiaChi</td><td data-id=" .$d->SoGiuong .' data-typeroom=' .$d->loaiphongID .
                                                                         ">$d->LoaiPhong</td><td>$d->SoNguoi</td><td data-id=" .$d->TienDV .
                                                                         ">$d->TenDichVu</td><td>$d->CheckIn</td><td>$d->CheckOut</td><td>$d->SoDienThoai</td>";
@@ -279,7 +279,7 @@
                 str += "<tr> <td> <label>Số giường khách đặt: </label> </td><td> " + numerbed +
                     " giường cho " + numperson + " người </td></tr>";
                 str += "<tr> <td> <label>Số phòng: </label> </td><td> " +
-                    " <select id=" + "numroom" + ">  </select> </td></tr>";
+                    " <select class='form-control' id=" + "numroom" + ">  </select> </td></tr>";
                 str += "<tr> <td> <label>Thẻ: </label> </td><td> " + card + "  </td></tr>";
                 str += "<tr> <td> <label>Số tiền: </label> </td><td id=" + "totalprice" + "> " + money +
                     "  </td></tr>";
@@ -364,7 +364,7 @@
         function getmoney(typemoney, servicemoney, day) {
             var total = (typemoney * day + servicemoney);
             console.log("total price: " + total);
-            $('#totalprice').html(total);
+            $('#totalprice').html(total.toLocaleString('en')+" VND");
         }
         // function get nums day 
         function getday(from, to) {

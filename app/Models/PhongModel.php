@@ -22,7 +22,7 @@ class PhongModel extends Model
     }
     // function get data room booked
     public static function getroombooked(){
-        $data = DB::select("SELECT phong.ID,phong.SoPhong,loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,
+        $data = DB::select("SELECT phong.ID,phong.SoPhong,phong.GiaTien 'GiaTien',loaiphong.TenLoai,phong.TrangThai,phong.SoNguoi,
         phong.SoGiuong,TenKH FROM booking ,
         (SELECT DISTINCT booking.SoPhong,booking.ID FROM booking WHERE TrangThai = 1 ORDER BY CheckIn DESC )
          as a,phong,loaiphong WHERE a.ID = booking.ID AND booking.ID_LoaiPhong = loaiphong.ID 

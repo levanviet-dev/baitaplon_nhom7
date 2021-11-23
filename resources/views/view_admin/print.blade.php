@@ -183,7 +183,7 @@
       <br/>
       <br/>
       <table class="TableData">
-        Ngày tháng năm
+       
         <?php
         $first_date = strtotime( $booking->CheckIn);
             $second_date = strtotime( $booking->CheckOut);
@@ -220,10 +220,10 @@
         
         echo "
         <tr>
-          <td>Dịch vụ: $dichvu->TenDichVu </td> <td id='giadv' data-id ='$dichvu->GiaTien' >".number_format($dichvu->GiaTien)."</td>
+          <td>Dịch vụ: $dichvu->TenDichVu </td> <td id='giadv' data-id ='".$dichvu->GiaTien."' >".number_format($dichvu->GiaTien)."</td>
         </tr>
          <tr>
-          <td data-id='$ngay'>Giá phòng: (". $ngay." ngày) </td> <td id='giaphong'></td>
+          <td data-id='$ngay' id = 'ngay'>Giá phòng: (". $ngay." ngày) </td> <td id='giaphong'></td>
         </tr>
          <tr>
           <td>Giảm giá cho toàn hóa đơn (%)</td> <td id='khuyenmai'data-id='$HoaDon->KhuyenMai' >$HoaDon->KhuyenMai </td>
@@ -254,6 +254,7 @@
            var giadv = $('#giadv').data('id');
            var tongtien = $('.cotSo').data('id');
            var khuyenmai = $('#khuyenmai').data('id');
+           var ngay = $('#ngay').data('id');
            var giaphong = parseInt(tongtien)/(100 - parseInt(khuyenmai))*100 - parseInt(giadv);
            console.log(giaphong);
            $('#giaphong').html(giaphong.toLocaleString('en'));

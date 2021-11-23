@@ -1,6 +1,6 @@
 <div class="plans-section" id="rooms">
     <div class="container">
-        <h3 class="title-w3-agileits title-black-wthree">Rooms And Rates</h3>
+        <h3 class="title-w3-agileits title-black-wthree">Phòng và đánh giá</h3>
         <div class="priceing-table-main">
                  @foreach ($data as $item)
                       <div class="col-md-3 price-grid">
@@ -14,18 +14,18 @@
                     </div>
                     <div class="price-gd-bottom">
                         <div class="price-list">
-                            <ul>
+                            {{-- <ul>
                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                 <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
 
-                            </ul>
+                            </ul> --}}
                         </div>
                         <div class="price-selet">
                             <h3><span>{{number_format($item['GiaTien'])}} </span>VNĐ</h3>
-                            <a href="booking">Book Now</a>
+                            <a href="booking">Đặt phòng</a>
                         </div>
                     </div>
                 </div>
