@@ -269,12 +269,14 @@
                 var title = "Xác nhận đặt phòng";
                 $('.modal-title').html(title);
                 // chèn các dữ liệu đc lấy vào modal toggle
+                var date = new Date();
                 var str =
                     "<table class='table''><tr><td> <label>Số điện thoại khách hàng: </label> </td><td> " +
                     phone + "</td><tr>";
 
                 str += "<tr> <td> <label>Tên khách hàng: </label> </td><td> " + name + " </td></tr>";
                 str += "<tr> <td> <label>Địa chỉ: </label> </td><td> " + adress + "  </td></tr>";
+                str += "<tr> <td> <label>Ngày vào: </label> </td><td> " + date.getFullYear()+"-"+date.getMonth() +"-"+date.getDate() +"  </td></tr>";
                 str += "<tr> <td> <label>Loại phòng: </label> </td><td> " + typeroom + "  </td></tr>";
                 str += "<tr> <td> <label>Số giường khách đặt: </label> </td><td> " + numerbed +
                     " giường cho " + numperson + " người </td></tr>";
@@ -314,7 +316,7 @@
                         success: function(data) {
                             var datas = JSON.parse(data);
                             moneyroom = datas[0]['GiaTien'];
-                            var day = getday(cin, cout);
+                            var day = getday(Date('Y-m-d'), cout);
                             console.log("Tien phong: " + moneyroom);
                             console.log("So ngay: " + day);
                             console.log('Tien dich vu: ' + moneyservice);

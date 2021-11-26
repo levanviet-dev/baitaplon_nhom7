@@ -1,6 +1,6 @@
 <div class="plans-section" id="rooms">
     <div class="container">
-        <h3 class="title-w3-agileits title-black-wthree">Phòng và đánh giá</h3>
+        <h3 class="title-w3-agileits title-black-wthree">Loại phòng phục vụ</h3>
         <div class="priceing-table-main">
                  @foreach ($data as $item)
                       <div class="col-md-3 price-grid">
